@@ -1,0 +1,27 @@
+.Search {
+    cursor: pointer;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+    text-align: center;
+}
+
+
+.Dropdown {
+  margin-left: 2em;
+}
+.DropItem {
+    margin-left: 1.5em;
+}
+
+.Input {
+  width: 50%;
+  border-radius: 5px;
+  display: inline-block;
+  float: left;
+  padding: 8px 10px;
+  line-height: 8px;
+  outline-width: 0;
+}
+
+.PlaceHolder::placeholder {
+  color: white;
+}

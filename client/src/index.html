@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React App</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="manifest" href="./manifest.json">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P"  rel="stylesheet">   
+</head>
+<body>
+    <div id="root"></div>
+  <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').then(registration => {
+              if (registration.installing) {
+                console.log('SW registered: ', registration);
+              }
+
+            }).catch(registrationError => {
+                console.log("registration error");
+            });
+          });
+        }
+  </script>
+</body>
+</html>

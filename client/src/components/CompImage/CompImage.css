@@ -1,0 +1,18 @@
+
+$blue: #056ef0;
+
+.CompText {
+  color: $blue;
+}
+
+.CompImage {
+    width: 80%;
+    height: 300px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.CompImg {
+    max-width: 100%;
+    max-height: 100%;
+}

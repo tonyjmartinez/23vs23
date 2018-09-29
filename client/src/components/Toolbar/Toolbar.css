@@ -1,0 +1,9 @@
+.Toolbar {
+    overflow: hidden;
+    color: #EF5A6D;
+    text-align: center;
+}
+
+.Toolbar h3 {
+    font-family: 'Press Start 2P', cursive;
+}

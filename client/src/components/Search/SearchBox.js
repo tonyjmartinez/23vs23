@@ -1,0 +1,147 @@
+import React, { Component } from "react";
+import classes from "./SearchBox.css";
+import ReactAutocomplete from "react-autocomplete";
+import MediaQuery from "react-responsive";
+import Person from "react-icons/lib/md/person";
+import PersonOutline from "react-icons/lib/md/person-outline";
+class searchBox extends Component {
+  state = {
+    value: "",
+    focus: false,
+    dropdownOpacity: 0
+  };
+  onBlur = () => {
+    this.setState({ focus: false, dropdownOpacity: 0 });
+    this.props.noneSelected();
+  };
+  onFocus = () => {
+    this.setState({ focus: true });
+    this.props.onSelected();
+    setTimeout(
+      function() {
+        this.setState({ dropdownOpacity: 1 });
+      }.bind(this),
+      100
+    );
+  };
+  render() {
+    let border;
+    if (this.state.focus) {
+      border = "5px solid " + this.props.themeColor;
+    } else {
+      border = "5px solid #ccc";
+    }
+    const inputStyle = {
+      width: this.props.width,
+      border: border,
+      borderRadius: "5px",
+      display: "inline-block",
+      padding: "8px 10px",
+      lineHeight: "8px",
+      outlineWidth: 0,
+      backgroundColor: "grey",
+      color: "white",
+      margin: "0px auto",
+      transition: "width 0.4s ease-in-out"
+    };
+    const wrapperStyle = {
+      width: "50%",
+      display: "inline-block",
+      outline: "none"
+    };
+    const menuStyle = {
+      position: "fixed",
+      overflow: "auto",
+      maxHeight: "50%",
+      borderRadius: "5px",
+      width: "40%",
+      left: "200px"
+    };
+
+    const dropdownStyle = {
+      backgroundColor: "grey",
+
+      height: "30px",
+      lineHeight: "30px",
+      color: "white"
+    };
+
+    const dropdownStyleHL = {
+      backgroundColor: this.props.themeColor,
+      color: "white",
+      height: "30px",
+      lineHeight: "30px"
+    };
+    let personIcon = <Person />;
+
+    if (this.state.focus) {
+      personIcon = <Person color={this.props.themeColor} size={30} />;
+    } else {
+      personIcon = <PersonOutline color={this.props.themeColor} size={30} />;
+    }
+
+    return (
+      <ReactAutocomplete
+        renderInput={props => {
+          return (
+            <div style={{ marginTop: "0em", width: "100%" }}>
+              <label style={{ marginTop: "0.3em" }}>{personIcon}</label>
+              <input
+                id="auto"
+                className={classes.PlaceHolder}
+                spellCheck="false"
+                type="search"
+                {...props}
+              />
+            </div>
+          );
+        }}
+        ref={ip => (this.search = ip)}
+        wrapperStyle={wrapperStyle}
+        inputProps={{
+          style: inputStyle,
+          onFocus: this.onFocus,
+          onBlur: this.onBlur,
+          placeholder: this.props.placeholder
+        }}
+        renderMenu={(items, value, style) => {
+          let newStyle = {
+            position: "fixed",
+            overflow: "auto",
+            maxHeight: "50%",
+            borderRadius: "5px",
+            width: "30%",
+            transform: "translate(" + this.props.dropdownWidth + ", 0)",
+            transition: "opacity 1s ease-in-out",
+            opacity: this.state.dropdownOpacity
+          };
+          return (
+            <div style={Object.assign(style, newStyle)} children={items} />
+          );
+        }}
+        items={this.props.players}
+        shouldItemRender={(item, value) =>
+          item.label.toLowerCase().indexOf(value.toLowerCase()) > -1
+        }
+        getItemValue={item => item.label}
+        renderItem={(item, highlighted) => (
+          <div
+            key={item.id}
+            style={highlighted ? dropdownStyleHL : dropdownStyle}
+            className={classes.Dropdown}
+          >
+            <span className={classes.DropItem}>{item.label}</span>
+          </div>
+        )}
+        value={this.state.value}
+        onChange={e => this.setState({ value: e.target.value })}
+        onSelect={value => {
+          this.props.searchPlayer(value);
+          this.setState({ value: value });
+        }}
+      />
+    );
+  }
+}
+
+export default searchBox;

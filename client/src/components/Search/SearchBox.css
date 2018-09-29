@@ -1,0 +1,36 @@
+
+.Search {
+    text-align: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+
+}
+
+
+
+.Dropdown {
+    height: 30px;
+    line-height: 30px;
+}
+
+.DropItem {
+}
+
+.Input {
+
+}
+
+.PlaceHolder::placeholder {
+  color: white;
+}
+.PlaceHolder::-webkit-search-cancel-button{
+  position:relative;
+  -webkit-appearance: none;
+  height: 10px;
+  width: 10px;
+  border-radius:10px;
+  background: red;
+
+}
+
+
