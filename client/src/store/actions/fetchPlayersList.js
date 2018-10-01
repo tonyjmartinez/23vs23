@@ -1,23 +1,39 @@
 import * as types from "./types";
 import "babel-polyfill";
 import axios from "../../axios";
+const R = require("ramda");
 
-export const playersListSuccess = players => {
+export const playersListSuccess = playerList => {
   return {
     type: types.FETCH_PLAYERS_SUCCESS,
-    playerList: players
+    playerList: playerList
   };
 };
 
+export const playersListStart = () => {
+  return {
+    type: types.FETCH_PLAYERS_START
+  };
+};
+
+const mapPlayer = player => {
+  let mapped = {};
+  let playerInfo = player.player;
+  let name = playerInfo.FirstName + " " + playerInfo.LastName;
+  mapped.id = name;
+  mapped.label = name;
+  return mapped;
+};
 export const fetchPlayersList = (season, seasonType) => async dispatch => {
-  console.log("fetchList");
+  dispatch(playersListStart());
   const players = await axios.get(
     "/players?season=" + season + "-" + seasonType,
     {
       mode: "cors"
     }
   );
-  console.log("players", players);
-  let playerList = players.data.data[0];
-  dispatch(playersListSuccess(playerList));
+  let playerList = players.data.data.playerentry;
+  let playerArr = [];
+  playerArr = R.map(mapPlayer, playerList);
+  return dispatch(playersListSuccess(playerArr));
 };

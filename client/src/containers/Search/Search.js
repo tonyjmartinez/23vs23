@@ -219,20 +219,24 @@ class Search extends Component {
       left: "20px"
     };
 
-    let spinner = <Spinner style={{}} />;
-    let searchIcon = (
-      <SearchIcon
-        style={searchStyle}
-        size={40}
-        color="#FF921B"
-        onClick={() => {
-          let search = this.search;
-          let search_value = this.search.value;
-          search.focus();
-          search.value = search_value;
-        }}
-      />
-    );
+    let playerList = [];
+    if (this.props.playerList.playerList) {
+      playerList = this.props.playerList.playerList;
+      console.log(playerList);
+    }
+
+    let searchIcon = <Spinner style={{}} />;
+    let loading = true;
+    if (!this.props.playerList.loading) {
+      loading = false;
+      searchIcon = (
+        <SearchIcon
+          onClick={() => this.search.focus()}
+          size={30}
+          color={this.props.themeColor}
+        />
+      );
+    }
 
     let searchBox = aFocused => {
       let playerAB;
@@ -243,7 +247,8 @@ class Search extends Component {
       }
       return (
         <SearchBox
-          players={this.state.players}
+          loading={loading}
+          players={playerList}
           searchPlayer={value => this.searchPlayer(value, playerAB)}
           placeholder={this.state.placeholder}
           themeColor={aFocused ? "#0095B3" : "#FF921B"}
@@ -256,6 +261,7 @@ class Search extends Component {
         />
       );
     };
+
     return (
       <div className={classes.Search}>
         <div
@@ -271,7 +277,6 @@ class Search extends Component {
               this.changeSeason(seasonType, season)
             }
           />
-          {this.state.loading ? spinner : searchIcon}
         </div>
         <div
           style={{
@@ -295,4 +300,8 @@ class Search extends Component {
   }
 }
 
-export default connect(null, actions)(Search);
+const mapStateToProps = playerList => {
+  return playerList;
+};
+
+export default connect(mapStateToProps, actions)(Search);

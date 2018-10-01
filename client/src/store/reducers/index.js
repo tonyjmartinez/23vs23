@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import fetchPlayersListReducer from "./fetchPlayersListReducer";
+import fetchPlayersList from "./fetchPlayersList";
 
 export default combineReducers({
-  playerList: fetchPlayersListReducer
+  playerList: fetchPlayersList
 });

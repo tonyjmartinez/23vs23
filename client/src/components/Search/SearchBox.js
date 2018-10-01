@@ -4,10 +4,13 @@ import ReactAutocomplete from "react-autocomplete";
 import MediaQuery from "react-responsive";
 import Person from "react-icons/lib/md/person";
 import PersonOutline from "react-icons/lib/md/person-outline";
+import SearchIcon from "react-icons/lib/md/search";
+
+import Spinner from "../Spinner/Spinner";
 class searchBox extends Component {
   state = {
     value: "",
-    focus: false,
+    focus: true,
     dropdownOpacity: 0
   };
   onBlur = () => {
@@ -47,7 +50,8 @@ class searchBox extends Component {
     const wrapperStyle = {
       width: "50%",
       display: "inline-block",
-      outline: "none"
+      outline: "none",
+      direction: "ltr"
     };
     const menuStyle = {
       position: "fixed",
@@ -80,12 +84,30 @@ class searchBox extends Component {
       personIcon = <PersonOutline color={this.props.themeColor} size={30} />;
     }
 
+    let placeholder = "Loading...";
+    if (!this.props.loading) {
+      placeholder = "Search";
+    }
     return (
       <ReactAutocomplete
         renderInput={props => {
           return (
-            <div style={{ marginTop: "0em", width: "100%" }}>
-              <label style={{ marginTop: "0.3em" }}>{personIcon}</label>
+            <div
+              style={{
+                marginTop: "0em",
+                width: "100%",
+                whiteSpace: "nowrap",
+                float: "right"
+              }}
+            >
+              <label
+                onClick={() => {
+                  this.search.focus();
+                }}
+                style={{ marginTop: "0.3em" }}
+              >
+                {personIcon}
+              </label>
               <input
                 id="auto"
                 className={classes.PlaceHolder}
@@ -102,7 +124,7 @@ class searchBox extends Component {
           style: inputStyle,
           onFocus: this.onFocus,
           onBlur: this.onBlur,
-          placeholder: this.props.placeholder
+          placeholder: placeholder
         }}
         renderMenu={(items, value, style) => {
           let newStyle = {
