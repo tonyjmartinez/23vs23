@@ -18,8 +18,8 @@ class Search extends Component {
     seasonType: "regular",
     loading: true,
     placeholder: "Loading...",
-    searchWidthA: "65%",
-    searchWidthB: "65%",
+    searchWidthA: "45%",
+    searchWidthB: "45%",
     dropdownWidth: "-10%",
     focused: ""
   };
@@ -36,14 +36,14 @@ class Search extends Component {
   aSelected = () => {
     let width;
     if (this.state.focused === "B") {
-      width = "-30%";
+      width = "-20%";
     } else {
-      width = "-10%";
+      width = "-20%";
     }
     this.setState(prevState => {
       return {
-        searchWidthA: "80%",
-        searchWidthB: "40%",
+        searchWidthA: "70%",
+        searchWidthB: "45%",
         dropdownWidth: width
       };
     });
@@ -61,14 +61,14 @@ class Search extends Component {
   bSelected = () => {
     let width;
     if (this.state.focused === "A") {
-      width = "-30%";
+      width = "-20%";
     } else {
-      width = "-10%";
+      width = "-20%";
     }
 
     this.setState({
-      searchWidthA: "40%",
-      searchWidthB: "80%",
+      searchWidthA: "45%",
+      searchWidthB: "70%",
       dropdownWidth: width
     });
     setTimeout(
@@ -84,8 +84,8 @@ class Search extends Component {
   };
   noneSelected = option => {
     this.setState({
-      searchWidthA: "65%",
-      searchWidthB: "65%"
+      searchWidthA: "45%",
+      searchWidthB: "45%"
     });
     setTimeout(
       function() {
@@ -125,7 +125,7 @@ class Search extends Component {
       });
   };
 
-  componentWillMount() {
+  componentDidMount() {
     //this.fetchPlayers("2017-2018-regular");
     this.props.fetchPlayersList("2017-2018", "regular");
   }
@@ -169,6 +169,11 @@ class Search extends Component {
       seasonType: seasonType
     });
     this.fetchPlayers(season + "-" + seasonType);
+  };
+
+  searchFocus = () => {
+    console.log(this.refs);
+    this.refs.SearchBox.refs.myInput.focus();
   };
 
   render() {
@@ -225,19 +230,6 @@ class Search extends Component {
       console.log(playerList);
     }
 
-    let searchIcon = <Spinner style={{}} />;
-    let loading = true;
-    if (!this.props.playerList.loading) {
-      loading = false;
-      searchIcon = (
-        <SearchIcon
-          onClick={() => this.search.focus()}
-          size={30}
-          color={this.props.themeColor}
-        />
-      );
-    }
-
     let searchBox = aFocused => {
       let playerAB;
       if (aFocused) {
@@ -247,7 +239,6 @@ class Search extends Component {
       }
       return (
         <SearchBox
-          loading={loading}
           players={playerList}
           searchPlayer={value => this.searchPlayer(value, playerAB)}
           placeholder={this.state.placeholder}
@@ -280,7 +271,6 @@ class Search extends Component {
         </div>
         <div
           style={{
-            clear: "both",
             display: "inline-block",
             width: "100%",
             marginTop: "15px"

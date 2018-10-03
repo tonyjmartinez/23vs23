@@ -10,7 +10,7 @@ import Spinner from "../Spinner/Spinner";
 class searchBox extends Component {
   state = {
     value: "",
-    focus: true,
+    focus: false,
     dropdownOpacity: 0
   };
   onBlur = () => {
@@ -31,6 +31,7 @@ class searchBox extends Component {
     let border;
     if (this.state.focus) {
       border = "5px solid " + this.props.themeColor;
+      console.log(this.state.focus);
     } else {
       border = "5px solid #ccc";
     }
@@ -45,13 +46,14 @@ class searchBox extends Component {
       backgroundColor: "grey",
       color: "white",
       margin: "0px auto",
-      transition: "width 0.4s ease-in-out"
+      transition: "width 0.6s ease-in-out"
     };
     const wrapperStyle = {
       width: "50%",
       display: "inline-block",
       outline: "none",
-      direction: "ltr"
+      textAlign: "center",
+      whiteSpace: "nowrap"
     };
     const menuStyle = {
       position: "fixed",
@@ -88,6 +90,20 @@ class searchBox extends Component {
     if (!this.props.loading) {
       placeholder = "Search";
     }
+
+    let searchIcon = <Spinner style={{}} />;
+    let loading = true;
+    if (!this.props.loading) {
+      loading = false;
+      searchIcon = (
+        <SearchIcon
+          onClick={() => this.searchFocus.focus()}
+          size={30}
+          color={this.props.themeColor}
+          style={{}}
+        />
+      );
+    }
     return (
       <ReactAutocomplete
         renderInput={props => {
@@ -96,13 +112,13 @@ class searchBox extends Component {
               style={{
                 marginTop: "0em",
                 width: "100%",
-                whiteSpace: "nowrap",
-                float: "right"
+                marginRight: "auto",
+                marginLeft: "auto"
               }}
             >
               <label
                 onClick={() => {
-                  this.search.focus();
+                  this.searchFocus.focus();
                 }}
                 style={{ marginTop: "0.3em" }}
               >
@@ -115,10 +131,11 @@ class searchBox extends Component {
                 type="search"
                 {...props}
               />
+
+              {searchIcon}
             </div>
           );
         }}
-        ref={ip => (this.search = ip)}
         wrapperStyle={wrapperStyle}
         inputProps={{
           style: inputStyle,
@@ -142,6 +159,7 @@ class searchBox extends Component {
           );
         }}
         items={this.props.players}
+        ref={ip => (this.searchFocus = ip)}
         shouldItemRender={(item, value) =>
           item.label.toLowerCase().indexOf(value.toLowerCase()) > -1
         }
