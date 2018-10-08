@@ -31,7 +31,6 @@ class searchBox extends Component {
     let border;
     if (this.state.focus) {
       border = "5px solid " + this.props.themeColor;
-      console.log(this.state.focus);
     } else {
       border = "5px solid #ccc";
     }
@@ -46,7 +45,8 @@ class searchBox extends Component {
       backgroundColor: "grey",
       color: "white",
       margin: "0px auto",
-      transition: "width 0.6s ease-in-out"
+      transition: "width 0.6s ease-in-out",
+      textOverflow: "ellipsis"
     };
     const wrapperStyle = {
       width: "50%",

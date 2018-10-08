@@ -59,7 +59,7 @@ class App extends Component {
               this.showCountingStats(stats, playerAB)
             }
           />
-          {statDisp}
+          <StatDisplay />
         </Nav>
       </React.Fragment>
     );

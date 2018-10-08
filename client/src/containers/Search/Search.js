@@ -130,6 +130,14 @@ class Search extends Component {
     this.props.fetchPlayersList("2017-2018", "regular");
   }
 
+  searchForPlayer = (playerName, playerAB) => {
+    this.props.searchPlayer(
+      this.state.season + "-" + this.state.seasonType,
+      playerName,
+      playerAB
+    );
+  };
+
   searchPlayer = (playerName, playerAB) => {
     let player;
     let season = this.state.season;
@@ -177,57 +185,9 @@ class Search extends Component {
   };
 
   render() {
-    const smallStyle = {
-      width: "60%",
-      /*border: "5px solid #ccc",*/
-      //border: this.state.focusBorder,
-      borderRadius: "5px",
-      display: "inline-block",
-      float: "left",
-      padding: "8px 10px",
-      lineHeight: "8px",
-      outlineWidth: 0
-    };
-
-    const wrapperStyle = {
-      width: "100%",
-      marginLeft: "1.5em",
-      outline: "none"
-    };
-
-    const dropdownStyle = {
-      backgroundColor: "grey",
-      color: "white",
-      height: "30px",
-      lineHeight: "30px"
-    };
-
-    const dropdownStyleHL = {
-      backgroundColor: "#FF921B",
-      color: "white",
-      height: "30px",
-      lineHeight: "30px"
-    };
-
-    const menuStyle = {
-      position: "fixed",
-      overflow: "auto",
-      maxHeight: "50%",
-      borderRadius: "5px",
-      left: "0px"
-    };
-
-    const searchStyle = {};
-
-    const itemStyle = {
-      position: "relative",
-      left: "20px"
-    };
-
     let playerList = [];
     if (this.props.playerList.playerList) {
       playerList = this.props.playerList.playerList;
-      console.log(playerList);
     }
 
     let searchBox = aFocused => {
@@ -240,7 +200,7 @@ class Search extends Component {
       return (
         <SearchBox
           players={playerList}
-          searchPlayer={value => this.searchPlayer(value, playerAB)}
+          searchPlayer={value => this.searchForPlayer(value, playerAB)}
           placeholder={this.state.placeholder}
           themeColor={aFocused ? "#0095B3" : "#FF921B"}
           width={aFocused ? this.state.searchWidthA : this.state.searchWidthB}
@@ -249,6 +209,7 @@ class Search extends Component {
             aFocused ? this.noneSelected("A") : this.noneSelected("B")
           }
           dropdownWidth={this.state.dropdownWidth}
+          loading={this.props.playerList.loading}
         />
       );
     };

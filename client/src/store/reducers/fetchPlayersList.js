@@ -11,12 +11,14 @@ const initialState = {
 };
 
 const fetchPlayersStart = (state, action) => {
+  console.log("fetch start");
   return updateObject(state, {
     loading: true
   });
 };
 
 const fetchPlayersSuccess = (state, action) => {
+  console.log("fetch success", state);
   console.log(action.playerList);
   return updateObject(state, { playerList: action.playerList, loading: false });
 };
