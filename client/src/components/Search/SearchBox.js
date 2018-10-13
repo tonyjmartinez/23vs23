@@ -128,7 +128,7 @@ class searchBox extends Component {
                 id="auto"
                 className={classes.PlaceHolder}
                 spellCheck="false"
-                type="search"
+                type="text"
                 {...props}
               />
 

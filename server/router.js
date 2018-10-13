@@ -61,6 +61,7 @@ module.exports = function(app) {
       }
     })
       .then(function(res) {
+        console.log(res.data.cumulativeplayerstats.playerstatsentry);
         return res.data.cumulativeplayerstats.playerstatsentry;
       })
       .catch(function(err) {

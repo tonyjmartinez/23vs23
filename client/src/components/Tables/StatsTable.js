@@ -7,7 +7,8 @@ const styles = {
     marginLeft: "auto",
     marginRight: "auto",
     color: "white",
-    fontSize: "2em"
+    fontSize: "2em",
+    width: "60%"
   }
 };
 class StatsTable extends Component {

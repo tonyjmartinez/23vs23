@@ -24,7 +24,6 @@
   color: white;
 }
 .PlaceHolder::-webkit-search-cancel-button{
-  position:relative;
   -webkit-appearance: none;
   height: 10px;
   width: 10px;
