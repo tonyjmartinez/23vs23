@@ -9,7 +9,8 @@ import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import KeyboardDown from "react-icons/lib/md/keyboard-arrow-down";
 import ArrowDown from "react-icons/lib/md/arrow-drop-down-circle";
-
+import * as actions from "../../store/actions";
+import { connect } from "react-redux";
 const selectStyle = {
   width: "25%",
   marginLeft: "10px",
@@ -28,17 +29,19 @@ class NativeSelects extends React.Component {
     season: "2017-2018",
     seasonType: "regular"
   };
-
+  componentDidMount() {
+    console.log("native selects", this.props);
+  }
   season = event => {
     console.log("event", event.target.value);
     this.setState({ season: event.target.value });
-    this.props.changeSeason(this.state.seasonType, event.target.value);
+    this.props.fetchPlayersList(event.target.value, this.state.seasonType);
   };
 
   seasonType = event => {
     let type = event.target.value;
     this.setState({ seasonType: event.target.value });
-    this.props.changeSeason(event.target.value, this.state.season);
+    this.props.fetchPlayersList(this.state.season, event.target.value);
   };
 
   colorStyle = () => {
@@ -124,4 +127,4 @@ class NativeSelects extends React.Component {
   }
 }
 
-export default NativeSelects;
+export default connect(null, actions)(NativeSelects);

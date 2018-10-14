@@ -7,13 +7,17 @@ import { updateObject } from "../utility";
 
 const initialState = {
   playerList: null,
-  loading: false
+  loading: false,
+  season: "2017-2018",
+  seasonType: "regular"
 };
 
 const fetchPlayersStart = (state, action) => {
   console.log("fetch start");
   return updateObject(state, {
-    loading: true
+    loading: true,
+    season: action.season,
+    seasonType: action.seasonType
   });
 };
 

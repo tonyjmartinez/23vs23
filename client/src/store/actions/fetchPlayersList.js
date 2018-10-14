@@ -10,9 +10,11 @@ export const playersListSuccess = playerList => {
   };
 };
 
-export const playersListStart = () => {
+export const playersListStart = (season, seasonType) => {
   return {
-    type: types.FETCH_PLAYERS_START
+    type: types.FETCH_PLAYERS_START,
+    season,
+    seasonType
   };
 };
 
@@ -25,7 +27,7 @@ const mapPlayer = player => {
   return mapped;
 };
 export const fetchPlayersList = (season, seasonType) => async dispatch => {
-  dispatch(playersListStart());
+  dispatch(playersListStart(season, seasonType));
   const players = await axios.get(
     "/players?season=" + season + "-" + seasonType,
     {

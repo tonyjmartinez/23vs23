@@ -128,11 +128,12 @@ class Search extends Component {
   componentDidMount() {
     //this.fetchPlayers("2017-2018-regular");
     this.props.fetchPlayersList("2017-2018", "regular");
+    console.log("component did mount", this.props.playerList);
   }
 
   searchForPlayer = (playerName, playerAB) => {
     this.props.searchPlayer(
-      this.state.season + "-" + this.state.seasonType,
+      this.props.playerList.season + "-" + this.props.playerList.seasonType,
       playerName,
       playerAB
     );
@@ -171,7 +172,6 @@ class Search extends Component {
   };
 
   changeSeason = (seasonType, season) => {
-    debugger;
     this.setState({
       season: season,
       seasonType: seasonType
@@ -189,7 +189,7 @@ class Search extends Component {
     if (this.props.playerList.playerList) {
       playerList = this.props.playerList.playerList;
     }
-
+    console.log("search playersList props", this.props.playerList);
     let searchBox = aFocused => {
       let playerAB;
       if (aFocused) {
@@ -251,8 +251,10 @@ class Search extends Component {
   }
 }
 
-const mapStateToProps = playerList => {
-  return playerList;
+const mapStateToProps = state => {
+  return {
+    playerList: state.playerList
+  };
 };
 
 export default connect(mapStateToProps, actions)(Search);

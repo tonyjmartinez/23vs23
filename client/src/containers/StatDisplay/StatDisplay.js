@@ -14,6 +14,10 @@ class StatDisplay extends Component {
     let names;
     let statsA = this.props.searchPlayer.A.countingStats;
     let statsB = this.props.searchPlayer.B.countingStats;
+    let tableStats = {
+      A: statsA,
+      B: statsB
+    };
     if (statsA !== null) {
       statsA.color = colors.blue;
       countingStats[0] = statsA;
@@ -41,7 +45,7 @@ class StatDisplay extends Component {
         <div>
           {names}
           <AnimatedRadar countingStats={countingStats} />
-          <StatsTable />
+          <StatsTable tableStats={tableStats} />
         </div>
       );
     }

@@ -28,7 +28,7 @@ export const searchPlayerTask = (season, playerName) =>
         resolver.resolve(res);
       })
       .catch(err => {
-        console.log(err);
+        resolver.reject(err);
       });
   });
 
@@ -43,7 +43,8 @@ export const searchPlayer = (
   playerName = playerName.replace(" ", "-");
   const res = await searchPlayerTask(season, playerName)
     .run()
-    .promise();
+    .promise()
+    .catch(e => "error");
   console.log("res", res);
   player = res.data.data[0];
   let countingStats = {
