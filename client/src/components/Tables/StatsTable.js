@@ -27,8 +27,8 @@ const renderTable = countingStats => {
     ) : null;
     return (
       <tr key={idx}>
-        <td>{labels[idx]}</td>
         {aVal}
+        <td>{labels[idx]}</td>
         {bVal}
       </tr>
     );

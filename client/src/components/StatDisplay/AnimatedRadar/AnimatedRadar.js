@@ -3,6 +3,7 @@ import SearchIcon from "react-icons/lib/md/search";
 import classes from "./AnimatedRadar.css";
 import { RadarChart, XAxis } from "react-vis";
 import CircularGridLines from "../../../../node_modules/react-vis/dist/plot/circular-grid-lines";
+import colors from "../../../styles/colors";
 import "../../../../node_modules/react-vis/dist/style.css";
 import "./PolygonStyle.css";
 class AnimatedRadar extends Component {
@@ -54,7 +55,7 @@ class AnimatedRadar extends Component {
             },
             labels: {
               textAnchor: "middle",
-              stroke: "#FF921B",
+              stroke: colors.red,
               opacity: 2,
               fontSize: 13
             }
