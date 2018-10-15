@@ -59,7 +59,9 @@ class App extends Component {
             this.showCountingStats(stats, playerAB)
           }
         />
-        <StatDisplay />
+        <div style={{ marginTop: "15px" }}>
+          <StatDisplay />
+        </div>
       </div>
     );
   }
