@@ -12,7 +12,14 @@ import ArrowDown from "react-icons/lib/md/arrow-drop-down-circle";
 import * as actions from "../../store/actions";
 import { connect } from "react-redux";
 const selectStyle = {
-  width: "25%",
+  width: "45%",
+  marginLeft: "10px",
+  color: "#0095B3",
+  fontSize: "1.2em",
+  appearance: "none"
+};
+const selectStyleYear = {
+  width: "35%",
   marginLeft: "10px",
   color: "#0095B3",
   fontSize: "1.2em",
@@ -114,7 +121,7 @@ class NativeSelects extends React.Component {
           onChange={this.season.bind(this)}
           input={
             <Input
-              style={selectStyle}
+              style={selectStyleYear}
               name="season"
               id="season-native-helper"
             />

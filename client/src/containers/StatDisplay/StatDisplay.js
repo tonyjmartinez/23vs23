@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AnimatedRadar from "../../components/StatDisplay/AnimatedRadar/AnimatedRadar";
 import StatsTable from "../../components/Tables/StatsTable";
 import { connect } from "react-redux";
-
+import MediaQuery from "react-responsive";
 import * as actions from "../../store/actions";
 import colors from "../../styles/colors";
 import RemoveCircle from "react-icons/lib/md/remove-circle-outline";
@@ -48,21 +48,19 @@ class StatDisplay extends Component {
         </h2>
       );
     }
+
     if (statsA !== null && statsB !== null) {
       names = (
         <div>
-          <h2>
-            <span style={{ color: colors.blue }}>
-              {" "}
-              {statsA.NAME}
-              {RemoveIcon("A")}
-            </span>
-            <span style={{ color: colors.red }}> vs </span>
-            <span style={{ color: colors.orange }}>
-              {statsB.NAME}
-              {RemoveIcon("B")}
-            </span>
-          </h2>
+          <span style={{ color: colors.blue, fontSize: "20px" }}>
+            {statsA.NAME}
+            {RemoveIcon("A")}
+          </span>
+          <span style={{ color: colors.red, fontSize: "20px" }}> vs </span>
+          <span style={{ color: colors.orange, fontSize: "20px" }}>
+            {statsB.NAME}
+            {RemoveIcon("B")}
+          </span>
         </div>
       );
     }
