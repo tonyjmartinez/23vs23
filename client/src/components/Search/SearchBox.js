@@ -18,6 +18,7 @@ class searchBox extends Component {
     this.props.noneSelected();
   };
   onFocus = () => {
+    this.setState({ value: "" });
     this.setState({ focus: true });
     this.props.onSelected();
     setTimeout(

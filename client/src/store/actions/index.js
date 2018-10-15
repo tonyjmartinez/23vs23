@@ -1,2 +1,2 @@
 export { fetchPlayersList } from "./fetchPlayersList";
-export { searchPlayer } from "./searchPlayer";
+export { searchPlayer, clearPlayer } from "./searchPlayer";

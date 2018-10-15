@@ -32,6 +32,18 @@ export const searchPlayerTask = (season, playerName) =>
       });
   });
 
+export const clearPlayerDispatch = player => {
+  console.log(types.CLEAR_PLAYER);
+  return {
+    type: types.CLEAR_PLAYER,
+    player
+  };
+};
+
+export const clearPlayer = player => dispatch => {
+  return dispatch(clearPlayerDispatch(player));
+};
+
 export const searchPlayer = (
   season,
   playerName,

@@ -1,4 +1,8 @@
-import { SEARCH_PLAYER_SUCCESS, SEARCH_PLAYER_START } from "../actions/types";
+import {
+  SEARCH_PLAYER_SUCCESS,
+  SEARCH_PLAYER_START,
+  CLEAR_PLAYER
+} from "../actions/types";
 import { updateObject } from "../utility";
 
 const initialState = {
@@ -32,13 +36,26 @@ const playerSearchSuccess = (state, action) => {
   return updateObject(state, updatedState);
 };
 
+const clearPlayer = (state, action) => {
+  const updatedStats = {
+    countingStats: null
+  };
+  const updatedState = {
+    [action.player]: updatedStats
+  };
+  return updateObject(state, updatedState);
+};
+
 const reducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case SEARCH_PLAYER_START:
       return playerSearchStart(state, action);
     case SEARCH_PLAYER_SUCCESS:
       console.log("success");
       return playerSearchSuccess(state, action);
+    case CLEAR_PLAYER:
+      return clearPlayer(state, action);
     default:
       return state;
   }

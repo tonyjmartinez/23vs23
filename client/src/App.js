@@ -50,18 +50,17 @@ class App extends Component {
     }
 
     return (
-      <React.Fragment>
+      <div style={{ marginBottom: "100px" }}>
         <Nav>
           <Toolbar />
-
-          <Search
-            showCountingStats={(stats, playerAB) =>
-              this.showCountingStats(stats, playerAB)
-            }
-          />
-          <StatDisplay />
         </Nav>
-      </React.Fragment>
+        <Search
+          showCountingStats={(stats, playerAB) =>
+            this.showCountingStats(stats, playerAB)
+          }
+        />
+        <StatDisplay />
+      </div>
     );
   }
 }

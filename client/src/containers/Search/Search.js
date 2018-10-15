@@ -18,8 +18,8 @@ class Search extends Component {
     seasonType: "regular",
     loading: true,
     placeholder: "Loading...",
-    searchWidthA: "45%",
-    searchWidthB: "45%",
+    searchWidthA: "25%",
+    searchWidthB: "25%",
     dropdownWidth: "-10%",
     focused: ""
   };
@@ -42,8 +42,8 @@ class Search extends Component {
     }
     this.setState(prevState => {
       return {
-        searchWidthA: "70%",
-        searchWidthB: "45%",
+        searchWidthA: "50%",
+        searchWidthB: "25%",
         dropdownWidth: width
       };
     });
@@ -67,8 +67,8 @@ class Search extends Component {
     }
 
     this.setState({
-      searchWidthA: "45%",
-      searchWidthB: "70%",
+      searchWidthA: "25%",
+      searchWidthB: "50%",
       dropdownWidth: width
     });
     setTimeout(
@@ -84,8 +84,8 @@ class Search extends Component {
   };
   noneSelected = option => {
     this.setState({
-      searchWidthA: "45%",
-      searchWidthB: "45%"
+      searchWidthA: "25%",
+      searchWidthB: "25%"
     });
     setTimeout(
       function() {
