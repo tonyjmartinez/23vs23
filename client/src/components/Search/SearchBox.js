@@ -47,7 +47,8 @@ class searchBox extends Component {
       color: "white",
       margin: "0px auto",
       transition: "width 0.6s ease-in-out",
-      textOverflow: "ellipsis"
+      textOverflow: "ellipsis",
+      fontSize: "16px"
     };
     const wrapperStyle = {
       width: "50%",
