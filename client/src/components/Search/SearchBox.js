@@ -73,7 +73,9 @@ class searchBox extends Component {
       backgroundColor: this.props.themeColor,
       color: "white",
       height: "30px",
-      lineHeight: "30px"
+      lineHeight: "30px",
+      textAlign: "left",
+      paddingLeft: "10px"
     };
     let personIcon = <Person />;
 
