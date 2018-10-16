@@ -46,7 +46,8 @@ class searchBox extends Component {
       backgroundColor: "grey",
       color: "white",
       margin: "0px auto",
-      transition: "width 0.6s ease-in-out",
+      transition: "width 0.5s",
+      transitionTimingFunction: "linear",
       textOverflow: "ellipsis",
       fontSize: "16px"
     };
@@ -57,21 +58,15 @@ class searchBox extends Component {
       textAlign: "center",
       whiteSpace: "nowrap"
     };
-    const menuStyle = {
-      position: "fixed",
-      overflow: "auto",
-      maxHeight: "50%",
-      borderRadius: "5px",
-      width: "40%",
-      left: "200px"
-    };
 
     const dropdownStyle = {
       backgroundColor: "grey",
-
+      textOverflow: "ellipsis",
       height: "30px",
       lineHeight: "30px",
-      color: "white"
+      color: "white",
+      textAlign: "left",
+      paddingLeft: "10px"
     };
 
     const dropdownStyleHL = {
