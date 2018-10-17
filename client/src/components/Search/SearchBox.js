@@ -25,7 +25,7 @@ class searchBox extends Component {
       function() {
         this.setState({ dropdownOpacity: 1 });
       }.bind(this),
-      100
+      500
     );
   };
   render() {
@@ -46,10 +46,10 @@ class searchBox extends Component {
       backgroundColor: "grey",
       color: "white",
       margin: "0px auto",
-      transition: "width 0.5s",
+      transition: "width 0.6s ease-in-out",
       transitionTimingFunction: "linear",
-      textOverflow: "ellipsis",
-      fontSize: "16px"
+      fontSize: "16px",
+
     };
     const wrapperStyle = {
       width: "50%",
@@ -150,7 +150,7 @@ class searchBox extends Component {
             borderRadius: "5px",
             width: "30%",
             transform: "translate(" + this.props.dropdownWidth + ", 0)",
-            transition: "opacity 1s ease-in-out",
+            transition: "opacity 0.6s ease-in",
             opacity: this.state.dropdownOpacity
           };
           return (
@@ -176,7 +176,8 @@ class searchBox extends Component {
         onChange={e => this.setState({ value: e.target.value })}
         onSelect={value => {
           this.props.searchPlayer(value);
-          this.setState({ value: value });
+          this.setState({ value: value});
+          this.searchFocus.blur();
         }}
       />
     );
