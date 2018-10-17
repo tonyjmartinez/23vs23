@@ -45,6 +45,7 @@ class searchBox extends Component {
       outlineWidth: 0,
       backgroundColor: "grey",
       color: "white",
+      textOverflow:'ellipsis',
       margin: "0px auto",
       transition: "width 0.6s ease-in-out",
       transitionTimingFunction: "linear",
