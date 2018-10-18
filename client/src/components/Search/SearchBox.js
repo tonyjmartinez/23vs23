@@ -45,12 +45,11 @@ class searchBox extends Component {
       outlineWidth: 0,
       backgroundColor: "grey",
       color: "white",
-      textOverflow:'ellipsis',
+      textOverflow: "ellipsis",
       margin: "0px auto",
       transition: "width 0.6s ease-in-out",
       transitionTimingFunction: "linear",
-      fontSize: "16px",
-
+      fontSize: "16px"
     };
     const wrapperStyle = {
       width: "50%",
@@ -151,7 +150,7 @@ class searchBox extends Component {
             borderRadius: "5px",
             width: "30%",
             transform: "translate(" + this.props.dropdownWidth + ", 0)",
-            transition: "opacity 0.6s ease-in",
+            transition: "opacity 0.2s ease-in",
             opacity: this.state.dropdownOpacity
           };
           return (
@@ -177,7 +176,7 @@ class searchBox extends Component {
         onChange={e => this.setState({ value: e.target.value })}
         onSelect={value => {
           this.props.searchPlayer(value);
-          this.setState({ value: value});
+          this.setState({ value: value });
           this.searchFocus.blur();
         }}
       />
