@@ -1,9 +1,17 @@
-import React from 'react';
-
-import classes from './Spinner.css';
+import React from "react";
+import { css } from "react-emotion";
+import { BounceLoader } from "react-spinners";
+import colors from "../../styles/colors";
+const spinStyle = {
+  display: "inline-block",
+  marginLeft: "5%",
+  verticalAlign: "middle"
+};
 
 const spinner = () => (
-    <div className={classes.Loader}>Loading...</div>
+  <div style={spinStyle}>
+    <BounceLoader sizeUnit={"px"} size={20} color={colors.orange} />
+  </div>
 );
 
 export default spinner;
