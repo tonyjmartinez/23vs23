@@ -9,6 +9,11 @@ export const searchPlayerStart = playerAB => {
   };
 };
 
+export const searchPlayerError = () => {
+  return {
+    type: types.SEARCH_PLAYER_ERROR
+  };
+};
 export const searchPlayerSuccess = (countingStats, playerAB) => {
   return {
     type: types.SEARCH_PLAYER_SUCCESS,
@@ -58,7 +63,12 @@ export const searchPlayer = (
     .promise()
     .catch(e => "error");
   console.log("res", res);
+  if (res.data.data === undefined) {
+    console.log("player not found");
+    return dispatch(searchPlayerError());
+  }
   player = res.data.data[0];
+
   let countingStats = {
     AST: parseFloat(player.stats.AstPerGame["#text"]),
     PTS: parseFloat(player.stats.PtsPerGame["#text"]),

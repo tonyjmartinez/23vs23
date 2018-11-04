@@ -1,6 +1,7 @@
 import {
   SEARCH_PLAYER_SUCCESS,
   SEARCH_PLAYER_START,
+  SEARCH_PLAYER_ERROR,
   CLEAR_PLAYER
 } from "../actions/types";
 import { updateObject } from "../utility";
@@ -12,12 +13,20 @@ const initialState = {
   B: {
     countingStats: null
   },
-  loading: false
+  loading: false,
+  error: false
 };
 
 const playerSearchStart = (state, action) => {
   return updateObject(state, {
-    loading: true
+    loading: true,
+    error: false
+  });
+};
+
+const playerSearchError = state => {
+  return updateObject(state, {
+    error: true
   });
 };
 
@@ -56,6 +65,9 @@ const reducer = (state = initialState, action) => {
       return playerSearchSuccess(state, action);
     case CLEAR_PLAYER:
       return clearPlayer(state, action);
+    case SEARCH_PLAYER_ERROR:
+      console.log("error");
+      return playerSearchError(state);
     default:
       return state;
   }
