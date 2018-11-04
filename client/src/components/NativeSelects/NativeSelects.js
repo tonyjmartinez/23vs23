@@ -70,6 +70,9 @@ class NativeSelects extends React.Component {
     if (this.state.seasonType === "regular") {
       options = (
         <React.Fragment>
+          <option style={optionStyle} value="2018-2019">
+            2018-19
+          </option>
           <option style={optionStyle} value="2017-2018">
             2017-18
           </option>

@@ -127,7 +127,7 @@ class Search extends Component {
 
   componentDidMount() {
     //this.fetchPlayers("2017-2018-regular");
-    this.props.fetchPlayersList("2017-2018", "regular");
+    this.props.fetchPlayersList("2018-2019", "regular");
     console.log("component did mount", this.props.playerList);
   }
 
