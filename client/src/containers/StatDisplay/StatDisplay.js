@@ -74,8 +74,17 @@ class StatDisplay extends Component {
         </div>
       );
     }
-
-    return <div style={{ textAlign: "center" }}>{stats}</div>;
+    let error = null;
+    if (this.props.playerStats.error) {
+      console.log("player error");
+      error = <h3 style={{ color: colors.red }}>Player Stats Not Found</h3>;
+    }
+    return (
+      <div style={{ textAlign: "center" }}>
+        {error}
+        {stats}
+      </div>
+    );
   }
 }
 

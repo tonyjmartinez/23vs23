@@ -25,6 +25,7 @@ const playerSearchStart = (state, action) => {
 };
 
 const playerSearchError = state => {
+  console.log("error reducer");
   return updateObject(state, {
     error: true
   });
