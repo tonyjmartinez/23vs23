@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import classes from "./SearchBox.css";
 import ReactAutocomplete from "react-autocomplete";
-import MediaQuery from "react-responsive";
 import Person from "react-icons/lib/md/person";
 import PersonOutline from "react-icons/lib/md/person-outline";
 import SearchIcon from "react-icons/lib/md/search";
-
+import Media from "react-media";
 import Spinner from "../Spinner/Spinner";
 class searchBox extends Component {
   state = {
@@ -123,14 +122,27 @@ class searchBox extends Component {
               >
                 {personIcon}
               </label>
-              <input
-                id="auto"
-                className={classes.PlaceHolder}
-                spellCheck="false"
-                type="text"
-                {...props}
-              />
-
+              <Media query="(min-width: 400px)">
+                {matches =>
+                  matches ? (
+                    <input
+                      id="auto"
+                      className={classes.PlaceHolder}
+                      spellCheck="false"
+                      type="text"
+                      {...props}
+                    />
+                  ) : (
+                    <input
+                      id="auto"
+                      className={classes.SmallInput}
+                      spellCheck="false"
+                      type="text"
+                      {...props}
+                    />
+                  )
+                }
+              </Media>
               {searchIcon}
             </div>
           );

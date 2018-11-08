@@ -237,14 +237,8 @@ class Search extends Component {
             marginTop: "15px"
           }}
         >
-          <MediaQuery query="(min-device-width: 601px)">
-            {searchBox(true)}
-            {searchBox(false)}
-          </MediaQuery>
-          <MediaQuery query="(max-device-width: 600px)">
-            {searchBox(true)}
-            {searchBox(false)}
-          </MediaQuery>
+          {searchBox(true)}
+          {searchBox(false)}
         </div>
       </div>
     );
