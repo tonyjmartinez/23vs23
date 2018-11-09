@@ -68,13 +68,16 @@ export const searchPlayer = (
     return dispatch(searchPlayerError());
   }
   player = res.data.data[0];
-
+  console.log("searchPlayer.js", player);
   let countingStats = {
     AST: parseFloat(player.stats.AstPerGame["#text"]),
     PTS: parseFloat(player.stats.PtsPerGame["#text"]),
     REB: parseFloat(player.stats.RebPerGame["#text"]),
     STL: parseFloat(player.stats.StlPerGame["#text"]),
     BLK: parseFloat(player.stats.BlkPerGame["#text"]),
+    FGPCT: parseFloat(player.stats.FgPct["#text"]),
+    FG3PTPCT: parseFloat(player.stats.Fg3PtPct["#text"]),
+    FTPCT: parseFloat(player.stats.FtPct["#text"]),
     NAME: name
   };
   //this.props.showCountingStats(countingStats, playerAB);
