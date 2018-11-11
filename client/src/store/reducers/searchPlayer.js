@@ -8,10 +8,10 @@ import { updateObject } from "../utility";
 
 const initialState = {
   A: {
-    countingStats: null
+    stats: null
   },
   B: {
-    countingStats: null
+    stats: null
   },
   loading: false,
   error: false
@@ -36,7 +36,7 @@ const playerSearchSuccess = (state, action) => {
   console.log("playerSearch");
 
   let updatedStats = {
-    countingStats: action.countingStats
+    stats: action.stats
   };
 
   let updatedState = {
@@ -48,7 +48,7 @@ const playerSearchSuccess = (state, action) => {
 
 const clearPlayer = (state, action) => {
   const updatedStats = {
-    countingStats: null
+    stats: null
   };
   const updatedState = {
     [action.player]: updatedStats

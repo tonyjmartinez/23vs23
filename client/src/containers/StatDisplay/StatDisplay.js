@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AnimatedRadar from "../../components/StatDisplay/AnimatedRadar/AnimatedRadar";
 import Clock from "../../components/StatDisplay/Clock/Clock";
+import Radio from "../../components/StatDisplay/Radio/Radio";
 import StatsTable from "../../components/Tables/StatsTable";
 import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
@@ -19,18 +20,18 @@ class StatDisplay extends Component {
       />
     );
     console.log("statdisplay", this.props);
-    let countingStats = [];
-    let stats = null;
+    let stats = [];
+    let statsDisplay = null;
     let names;
-    let statsA = this.props.playerStats.A.countingStats;
-    let statsB = this.props.playerStats.B.countingStats;
+    let statsA = this.props.playerStats.A.stats;
+    let statsB = this.props.playerStats.B.stats;
     let tableStats = {
       A: statsA,
       B: statsB
     };
     if (statsA !== null) {
       statsA.color = colors.blue;
-      countingStats[0] = statsA;
+      stats[0] = statsA;
       console.log("name", statsA.NAME);
       names = (
         <h2 style={{ color: colors.blue }}>
@@ -41,7 +42,7 @@ class StatDisplay extends Component {
     }
     if (statsB !== null) {
       statsB.color = colors.orange;
-      countingStats[1] = statsB;
+      stats[1] = statsB;
       names = (
         <h2 style={{ color: colors.orange }}>
           {statsB.NAME}
@@ -66,13 +67,14 @@ class StatDisplay extends Component {
       );
     }
     if (!(statsA == null && statsB == null)) {
-      stats = (
+      statsDisplay = (
         <div>
           {names}
-          <AnimatedRadar countingStats={countingStats} />
+          <AnimatedRadar countingStats={stats} />
           <h3 style={{ color: colors.red }}>Counting Stats Per Game</h3>
           <StatsTable tableStats={tableStats} />
-          <Clock stats={countingStats} />
+          <Clock stats={stats} />
+          <Radio />
         </div>
       );
     }
@@ -84,7 +86,7 @@ class StatDisplay extends Component {
     return (
       <div style={{ textAlign: "center" }}>
         {error}
-        {stats}
+        {statsDisplay}
       </div>
     );
   }

@@ -14,10 +14,10 @@ export const searchPlayerError = () => {
     type: types.SEARCH_PLAYER_ERROR
   };
 };
-export const searchPlayerSuccess = (countingStats, playerAB) => {
+export const searchPlayerSuccess = (stats, playerAB) => {
   return {
     type: types.SEARCH_PLAYER_SUCCESS,
-    countingStats,
+    stats,
     playerAB
   };
 };
@@ -69,7 +69,7 @@ export const searchPlayer = (
   }
   player = res.data.data[0];
   console.log("searchPlayer.js", player);
-  let countingStats = {
+  let stats = {
     AST: parseFloat(player.stats.AstPerGame["#text"]),
     PTS: parseFloat(player.stats.PtsPerGame["#text"]),
     REB: parseFloat(player.stats.RebPerGame["#text"]),
@@ -80,7 +80,5 @@ export const searchPlayer = (
     FTPCT: parseFloat(player.stats.FtPct["#text"]),
     NAME: name
   };
-  //this.props.showCountingStats(countingStats, playerAB);
-  console.log("searchPLayer action", countingStats);
-  return dispatch(searchPlayerSuccess(countingStats, playerAB));
+  return dispatch(searchPlayerSuccess(stats, playerAB));
 };
