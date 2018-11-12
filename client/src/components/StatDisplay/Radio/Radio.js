@@ -5,12 +5,12 @@ import green from "@material-ui/core/colors/green";
 import Radio from "@material-ui/core/Radio";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
-
+import colors from "../../../styles/colors";
 const styles = {
   root: {
-    color: green[600],
+    color: colors.red,
     "&$checked": {
-      color: green[500]
+      color: colors.red
     }
   },
   checked: {}
@@ -18,61 +18,52 @@ const styles = {
 
 class RadioButtons extends React.Component {
   state = {
-    selectedValue: "a"
+    selectedValue: "FGPCT"
   };
 
   handleChange = event => {
     this.setState({ selectedValue: event.target.value });
+    this.props.changeSplit(event.target.value);
   };
 
   render() {
     const { classes } = this.props;
 
     return (
-      <div>
+      <div style={{ color: "white" }}>
         <Radio
-          checked={this.state.selectedValue === "a"}
+          checked={this.state.selectedValue === "FGPCT"}
           onChange={this.handleChange}
-          value="a"
+          value="FGPCT"
           name="radio-button-demo"
-          aria-label="A"
-        />
-        <Radio
-          checked={this.state.selectedValue === "b"}
-          onChange={this.handleChange}
-          value="b"
-          name="radio-button-demo"
-          aria-label="B"
-        />
-        <Radio
-          checked={this.state.selectedValue === "c"}
-          onChange={this.handleChange}
-          value="c"
-          name="radio-button-demo"
-          aria-label="C"
           classes={{
             root: classes.root,
             checked: classes.checked
           }}
         />
+        FG
         <Radio
-          checked={this.state.selectedValue === "d"}
+          checked={this.state.selectedValue === "FG3PTPCT"}
           onChange={this.handleChange}
-          value="d"
-          color="default"
+          value="FG3PTPCT"
           name="radio-button-demo"
-          aria-label="D"
+          classes={{
+            root: classes.root,
+            checked: classes.checked
+          }}
         />
+        3PT
         <Radio
-          checked={this.state.selectedValue === "e"}
+          checked={this.state.selectedValue === "FTPCT"}
           onChange={this.handleChange}
-          value="e"
-          color="default"
+          value="FTPCT"
           name="radio-button-demo"
-          aria-label="E"
-          icon={<RadioButtonUncheckedIcon fontSize="small" />}
-          checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
+          classes={{
+            root: classes.root,
+            checked: classes.checked
+          }}
         />
+        FT
       </div>
     );
   }

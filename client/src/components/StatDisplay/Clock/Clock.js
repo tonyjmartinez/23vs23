@@ -4,6 +4,8 @@ import { XYPlot, ArcSeries } from "react-vis";
 
 import { EXTENDED_DISCRETE_COLOR_RANGE } from "../../../../node_modules/react-vis/dist/theme.js";
 import colors from "../../../styles/colors";
+import Radio from "../../StatDisplay/Radio/Radio";
+
 const PI = Math.PI;
 
 function getSeconds() {
@@ -19,6 +21,10 @@ export default class Clock extends React.Component {
   componentDidMount() {}
 
   componentWillUnmount() {}
+
+  changeSplit = split => {
+    this.setState({ split });
+  };
 
   render() {
     console.log("[Clock.js]", this.props.stats);
@@ -43,8 +49,8 @@ export default class Clock extends React.Component {
         color: 1
       };
     } else if (this.props.stats[0] && this.props.stats[1]) {
-      fgPctA = this.props.stats[0];
-      fgPctB = this.props.stats[1];
+      fgPctA = this.props.stats[1];
+      fgPctB = this.props.stats[0];
       pctArr[0] = {
         time: pctToClock(fgPctA[this.state.split]),
         radius0: 1.6,
@@ -77,26 +83,11 @@ export default class Clock extends React.Component {
               stiffness: 300
             }}
             radiusDomain={[0, 3]}
-            data={
-              pctArr
-              // [
-              //{
-              //  time: pctToClock(this.props.stats[0].FGPCT),
-              //  radius0: 1.6,
-              //  radius: 2.1,
-              //  color: 1
-              //},
-              // {
-              //   time: pctToClock(this.props.stats[1].FGPCT),
-              //   radius0: 2.2,
-              //   radius: 2.7,
-              //   color: 2
-              //}
-              // ]
-            }
+            data={pctArr}
             colorRange={[colors.orange, colors.blue]}
           />
         </XYPlot>
+        <Radio changeSplit={this.changeSplit} />
       </div>
     );
   }
