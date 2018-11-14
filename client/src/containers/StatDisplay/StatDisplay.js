@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AnimatedRadar from "../../components/StatDisplay/AnimatedRadar/AnimatedRadar";
 import Clock from "../../components/StatDisplay/Clock/Clock";
-
+import PctTable from "../../components/Tables/PctTable";
 import StatsTable from "../../components/Tables/StatsTable";
 import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
@@ -74,6 +74,9 @@ class StatDisplay extends Component {
           <h3 style={{ color: colors.red }}>Counting Stats Per Game</h3>
           <StatsTable tableStats={tableStats} />
           <Clock stats={stats} />
+          <h3 style={{color: colors.red}}>Shooting Splits Per Game</h3>
+          <PctTable tableStats={tableStats}/>
+
         </div>
       );
     }
