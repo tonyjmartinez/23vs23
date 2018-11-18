@@ -24,7 +24,7 @@ class searchBox extends Component {
       function() {
         this.setState({ dropdownOpacity: 1 });
       }.bind(this),
-      500
+      200
     );
   };
   render() {
