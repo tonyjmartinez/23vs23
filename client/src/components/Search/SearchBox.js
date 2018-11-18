@@ -161,7 +161,7 @@ class searchBox extends Component {
             borderRadius: "5px",
             width: "30%",
             transform: "translate(" + this.props.dropdownWidth + ", 0)",
-            transition: "opacity 0.2s ease-in",
+            transition: "opacity 0.1s ease-in",
             opacity: this.state.dropdownOpacity
           };
           return (
