@@ -73,10 +73,15 @@ class StatDisplay extends Component {
           <AnimatedRadar countingStats={stats} />
           <h3 style={{ color: colors.red }}>Counting Stats Per Game</h3>
           <StatsTable tableStats={tableStats} />
+          <hr
+            style={{
+              width: "70%",
+              border: "2px solid " + colors.blue
+            }}
+          />
           <Clock stats={stats} />
-          <h3 style={{color: colors.red}}>Shooting Splits Per Game</h3>
-          <PctTable tableStats={tableStats}/>
-
+          <h3 style={{ color: colors.red }}>Shooting Splits Per Game</h3>
+          <PctTable tableStats={tableStats} />
         </div>
       );
     }

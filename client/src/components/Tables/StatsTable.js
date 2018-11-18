@@ -71,7 +71,7 @@ class StatsTable extends Component {
     console.log(table);
     const { classes } = this.props;
     return (
-      <div>
+      <div style={{ marginBottom: "45px" }}>
         <table className={classes.table}>
           <tbody>{table}</tbody>
         </table>
