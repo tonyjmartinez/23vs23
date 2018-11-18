@@ -4,11 +4,13 @@ import { withStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import FormControl from "@material-ui/core/FormControl";
 import KeyboardDown from "react-icons/lib/md/keyboard-arrow-down";
 import ArrowDown from "react-icons/lib/md/arrow-drop-down-circle";
+import colors from "../../styles/colors";
 import * as actions from "../../store/actions";
 import { connect } from "react-redux";
 const selectStyle = {
@@ -16,24 +18,27 @@ const selectStyle = {
   marginLeft: "10px",
   color: "#0095B3",
   fontSize: "1.2em",
-  appearance: "none"
+  appearance: "none",
+  borderBottom: "3px solid " + colors.blue
 };
+
 const selectStyleYear = {
   width: "35%",
   marginLeft: "10px",
   color: "#0095B3",
   fontSize: "1.2em",
-  appearance: "none"
+  appearance: "none",
+  borderBottom: "3px solid " + colors.blue
 };
 
 const optionStyle = {
-  backgroundColor: "#636060",
-  border: "none"
+  backgroundColor: colors.blue,
+  borderTop: "none"
 };
 
-class NativeSelects extends React.Component {
+class SimpleSelect extends React.Component {
   state = {
-    season: "2017-2018",
+    season: "2018-2019",
     seasonType: "regular"
   };
   componentDidMount() {
@@ -47,6 +52,11 @@ class NativeSelects extends React.Component {
 
   seasonType = event => {
     let type = event.target.value;
+    if (event.target.value === "regular") {
+      this.setState({ season: "2018-2019" });
+    } else {
+      this.setState({ season: "2018" });
+    }
     this.setState({ seasonType: event.target.value });
     this.props.fetchPlayersList(this.state.season, event.target.value);
   };
@@ -67,74 +77,63 @@ class NativeSelects extends React.Component {
 
   render() {
     let options;
+    console.log("[NativeSelects.js]", this.state.season);
     if (this.state.seasonType === "regular") {
-      options = (
-        <React.Fragment>
-          <option style={optionStyle} value="2018-2019">
-            2018-19
-          </option>
-          <option style={optionStyle} value="2017-2018">
-            2017-18
-          </option>
-          <option style={optionStyle} value="2016-2017">
-            2016-17
-          </option>
-          <option style={optionStyle} value="2015-2016">
-            2015-16
-          </option>
-        </React.Fragment>
-      );
-    } else {
-      options = (
-        <React.Fragment>
-          <option style={optionStyle} value="2018">
-            2018
-          </option>
-          <option style={optionStyle} value="2017">
-            2017
-          </option>
-          <option style={optionStyle} value="2016">
-            2016
-          </option>
-        </React.Fragment>
-      );
+      options = [
+        <MenuItem key={1} style={optionStyle} value="2018-2019">
+          2018-19
+        </MenuItem>,
+        <MenuItem key={2} style={optionStyle} value="2017-2018">
+          2017-18
+        </MenuItem>,
+        <MenuItem key={3} style={optionStyle} value="2016-2017">
+          2016-17
+        </MenuItem>,
+        <MenuItem key={4} style={optionStyle} value="2015-2016">
+          2015-16
+        </MenuItem>
+      ];
+    } else if (this.state.seasonType === "playoff") {
+      options = [
+        <MenuItem key={5} style={optionStyle} value="2018">
+          2018
+        </MenuItem>,
+        <MenuItem key={6} style={optionStyle} value="2017">
+          2017
+        </MenuItem>,
+        <MenuItem key={7} style={optionStyle} value="2016">
+          2016
+        </MenuItem>
+      ];
     }
     return (
       <React.Fragment>
-        <NativeSelect
+        <Select
           IconComponent={this.colorStyle}
           onChange={this.seasonType.bind(this)}
+          value={this.state.seasonType}
           input={
-            <Input
-              style={selectStyle}
-              name="seasonType"
-              id="seasonType-native-helper"
-            />
+            <Input style={selectStyle} name="seasonType" id="seasonType" />
           }
         >
-          <option style={optionStyle} value="regular">
+          <MenuItem style={optionStyle} value="regular">
             Regular Season
-          </option>
-          <option style={optionStyle} value="playoff">
+          </MenuItem>
+          <MenuItem style={optionStyle} value="playoff">
             Playoffs
-          </option>
-        </NativeSelect>
-        <NativeSelect
+          </MenuItem>
+        </Select>
+        <Select
+          value={this.state.season}
           IconComponent={this.colorStyle}
           onChange={this.season.bind(this)}
-          input={
-            <Input
-              style={selectStyleYear}
-              name="season"
-              id="season-native-helper"
-            />
-          }
+          input={<Input style={selectStyleYear} name="season" id="season" />}
         >
           {options}
-        </NativeSelect>
+        </Select>
       </React.Fragment>
     );
   }
 }
 
-export default connect(null, actions)(NativeSelects);
+export default connect(null, actions)(SimpleSelect);
