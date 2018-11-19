@@ -16,4 +16,9 @@ workbox.routing.registerRoute(
   })
 );
 
+workbox.routing.registerRoute(
+  new RegExp("https://23vs23.com/app2/.*"),
+  workbox.strategies.staleWhileRevalidate()
+);
+
 workbox.precaching.precacheAndRoute(self.__precacheManifest);
