@@ -69,12 +69,13 @@ module.exports = {
       swDest: "sw.js"
     }),
     new webpackPwaManifest({
-      name: "React Webpack starter.",
-      short_name: "React-Starter",
-      description: "React starter project using Webpack.",
+      name: "23vs23",
+      short_name: "23vs23",
+      description: "23vs23 NBA Player Stats Comparator",
       background_color: "#ffffff",
       start_url: "/index.html",
-      filename: "manifest.json"
+      filename: "manifest.json",
+      theme_color: "#ffffff"
     })
   ]
 };
