@@ -32,8 +32,8 @@ const selectStyleYear = {
 };
 
 const optionStyle = {
-  backgroundColor: colors.blue,
-  borderTop: "none"
+  borderTop: "none",
+  color: colors.blue
 };
 
 class SimpleSelect extends React.Component {
