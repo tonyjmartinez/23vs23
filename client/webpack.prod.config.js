@@ -72,10 +72,10 @@ module.exports = {
       name: "23vs23",
       short_name: "23vs23",
       description: "23vs23 NBA Player Stats Comparator",
-      background_color: "#ffffff",
+      background_color: "#000000",
       start_url: "/index.html",
       filename: "manifest.json",
-      theme_color: "#ffffff"
+      theme_color: "#000000"
     })
   ]
 };
