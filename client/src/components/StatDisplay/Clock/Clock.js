@@ -64,9 +64,21 @@ export default class Clock extends React.Component {
         color: 1
       };
     }
+    let aPct = "";
+    let bPct = "";
+    let vs = "";
+    if (this.props.stats[0] !== undefined) {
+        aPct = this.props.stats[0][this.state.split] + " %";
+    }
+    if (this.props.stats[1] !== undefined) {
+        bPct = this.props.stats[1][this.state.split] + " %";
+    }
 
-    console.log("[Clock.js]", pctArr);
+    if (this.props.stats[0] && this.props.stats[1]) {
+        vs = "  VS  ";
+    }
 
+    console.log("[Clock.js]", this.props.stats);
     return (
       <div style={{ margin: "0px auto", width: "300px" }}>
         <XYPlot
@@ -87,6 +99,9 @@ export default class Clock extends React.Component {
             colorRange={[colors.orange, colors.blue]}
           />
         </XYPlot>
+        <span style={{color:colors.blue}}>{aPct}</span>
+        <span style={{color:'white'}}>{vs}</span>
+        <span style={{color:colors.orange}}>{bPct}</span>
         <Radio changeSplit={this.changeSplit} />
       </div>
     );
