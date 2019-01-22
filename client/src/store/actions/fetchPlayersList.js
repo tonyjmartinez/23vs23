@@ -18,7 +18,12 @@ export const playersListStart = (season, seasonType) => {
   };
 };
 
+const filterPlayers = player => player.player.Position !== "C";
+
 const mapPlayer = player => {
+  if (player.player.Position === "C") {
+    console.log("coach");
+  }
   let mapped = {};
   let playerInfo = player.player;
   let name = playerInfo.FirstName + " " + playerInfo.LastName;
@@ -35,7 +40,8 @@ export const fetchPlayersList = (season, seasonType) => async dispatch => {
     }
   );
   let playerList = players.data.data.playerentry;
-  let playerArr = [];
-  playerArr = R.map(mapPlayer, playerList);
-  return dispatch(playersListSuccess(playerArr));
+  let playerArr = R.filter(filterPlayers, playerList);
+  let filteredPlayers = R.map(mapPlayer, playerArr);
+
+  return dispatch(playersListSuccess(filteredPlayers));
 };
