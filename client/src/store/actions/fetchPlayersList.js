@@ -40,8 +40,8 @@ export const fetchPlayersList = (season, seasonType) => async dispatch => {
     }
   );
   let playerList = players.data.data.playerentry;
-  let playerArr = R.filter(filterPlayers, playerList);
-  let filteredPlayers = R.map(mapPlayer, playerArr);
+
+  let filteredPlayers = R.map(mapPlayer, playerList);
 
   return dispatch(playersListSuccess(filteredPlayers));
 };
