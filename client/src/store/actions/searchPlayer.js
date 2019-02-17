@@ -59,6 +59,7 @@ export const searchPlayer = (
   let name = playerName;
   playerName = playerName.split("-").join("");
   playerName = playerName.replace(" ", "-");
+  playerName = playerName.replace("'", "");
   const res = await searchPlayerTask(season, playerName)
     .run()
     .promise()
