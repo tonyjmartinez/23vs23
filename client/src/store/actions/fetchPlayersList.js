@@ -21,9 +21,6 @@ export const playersListStart = (season, seasonType) => {
 const filterPlayers = player => player.player.Position !== "C";
 
 const mapPlayer = player => {
-  if (player.player.Position === "C") {
-    console.log("coach");
-  }
   let mapped = {};
   let playerInfo = player.player;
   let name = playerInfo.FirstName + " " + playerInfo.LastName;

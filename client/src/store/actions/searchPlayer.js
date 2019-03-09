@@ -29,7 +29,6 @@ export const searchPlayerTask = (season, playerName) =>
         mode: "cors"
       })
       .then(res => {
-        console.log(res);
         resolver.resolve(res);
       })
       .catch(err => {
@@ -38,7 +37,6 @@ export const searchPlayerTask = (season, playerName) =>
   });
 
 export const clearPlayerDispatch = player => {
-  console.log(types.CLEAR_PLAYER);
   return {
     type: types.CLEAR_PLAYER,
     player
@@ -64,13 +62,10 @@ export const searchPlayer = (
     .run()
     .promise()
     .catch(e => "error");
-  console.log("res", res);
   if (res.data.data === undefined) {
-    console.log("player not found");
     return dispatch(searchPlayerError());
   }
   player = res.data.data[0];
-  console.log("searchPlayer.js", player);
   let stats = {
     AST: parseFloat(player.stats.AstPerGame["#text"]),
     PTS: parseFloat(player.stats.PtsPerGame["#text"]),
@@ -82,5 +77,6 @@ export const searchPlayer = (
     FTPCT: parseFloat(player.stats.FtPct["#text"]),
     NAME: name
   };
+  console.log("[searchPlayer.js]", player.stats);
   return dispatch(searchPlayerSuccess(stats, playerAB));
 };

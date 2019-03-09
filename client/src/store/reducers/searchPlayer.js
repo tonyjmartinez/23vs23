@@ -25,16 +25,12 @@ const playerSearchStart = (state, action) => {
 };
 
 const playerSearchError = state => {
-  console.log("error reducer");
   return updateObject(state, {
     error: true
   });
 };
 
 const playerSearchSuccess = (state, action) => {
-  console.log("action", action);
-  console.log("playerSearch");
-
   let updatedStats = {
     stats: action.stats
   };
@@ -57,17 +53,14 @@ const clearPlayer = (state, action) => {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case SEARCH_PLAYER_START:
       return playerSearchStart(state, action);
     case SEARCH_PLAYER_SUCCESS:
-      console.log("success");
       return playerSearchSuccess(state, action);
     case CLEAR_PLAYER:
       return clearPlayer(state, action);
     case SEARCH_PLAYER_ERROR:
-      console.log("error");
       return playerSearchError(state);
     default:
       return state;

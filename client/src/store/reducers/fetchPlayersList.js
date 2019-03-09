@@ -13,7 +13,6 @@ const initialState = {
 };
 
 const fetchPlayersStart = (state, action) => {
-  console.log("fetch start");
   return updateObject(state, {
     loading: true,
     season: action.season,
@@ -22,12 +21,9 @@ const fetchPlayersStart = (state, action) => {
 };
 
 const fetchPlayersSuccess = (state, action) => {
-  console.log("fetch success", state);
-  console.log(action.playerList);
   return updateObject(state, { playerList: action.playerList, loading: false });
 };
 const reducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case FETCH_PLAYERS_SUCCESS:
       return fetchPlayersSuccess(state, action);

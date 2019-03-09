@@ -41,11 +41,8 @@ class SimpleSelect extends React.Component {
     season: "2018-2019",
     seasonType: "regular"
   };
-  componentDidMount() {
-    console.log("native selects", this.props);
-  }
+  componentDidMount() {}
   season = event => {
-    console.log("event", event.target.value);
     this.setState({ season: event.target.value });
     this.props.fetchPlayersList(event.target.value, this.state.seasonType);
   };
@@ -77,7 +74,6 @@ class SimpleSelect extends React.Component {
 
   render() {
     let options;
-    console.log("[NativeSelects.js]", this.state.season);
     if (this.state.seasonType === "regular") {
       options = [
         <MenuItem key={1} style={optionStyle} value="2018-2019">

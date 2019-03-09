@@ -10,15 +10,13 @@ const styles = {
     marginRight: "auto",
     color: "white",
     fontSize: "2em",
-    width: "60%"
+    width: "20%"
   }
 };
 const mapIndexed = R.addIndex(R.map);
 const renderTable = countingStats => {
   let table = mapIndexed((val, idx) => {
-    console.log("val", val);
     let stats = val;
-    console.log(stats);
     let aVal = stats.A ? (
       <td style={{ color: colors.blue }}>{stats.A.val}</td>
     ) : null;
@@ -44,12 +42,10 @@ const populateStats = (stats, player, statsArr) => {
   statsArr[2][player] = { val: stats.AST };
   statsArr[3][player] = { val: stats.STL };
   statsArr[4][player] = { val: stats.BLK };
-  console.log("popStats", statsArr);
   return statsArr;
 };
 class StatsTable extends Component {
   render() {
-    console.log(this.props.tableStats);
     let statsA = this.props.tableStats.A;
     let statsB = this.props.tableStats.B;
     let tableStats = {};
@@ -68,7 +64,6 @@ class StatsTable extends Component {
     }
 
     const table = renderTable(statsArr);
-    console.log(table);
     const { classes } = this.props;
     return (
       <div style={{ marginBottom: "45px" }}>

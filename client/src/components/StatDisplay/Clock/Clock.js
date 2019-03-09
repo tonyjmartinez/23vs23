@@ -91,8 +91,8 @@ export default class Clock extends React.Component {
         >
           <ArcSeries
             animation={{
-              damping: 9,
-              stiffness: 300
+              damping: 11,
+              stiffness: 100
             }}
             radiusDomain={[0, 3]}
             data={pctArr}

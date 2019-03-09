@@ -21,7 +21,6 @@ class App extends Component {
   };
 
   showCountingStats = (stats, playerAB) => {
-    console.log("new stats", stats);
     let newStats = [];
     newStats[0] = stats;
 
@@ -38,7 +37,6 @@ class App extends Component {
   };
 
   render() {
-    console.log("Cnt Stats", this.state.countingStats);
     let statDisp = null;
     if (this.state.countingStats.length > 0) {
       statDisp = (

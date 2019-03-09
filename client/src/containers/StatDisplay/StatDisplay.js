@@ -9,9 +9,7 @@ import * as actions from "../../store/actions";
 import colors from "../../styles/colors";
 import RemoveCircle from "react-icons/lib/md/remove-circle-outline";
 class StatDisplay extends Component {
-  componentWillMount() {
-    console.log(this.props);
-  }
+  componentWillMount() {}
   render() {
     let RemoveIcon = player => (
       <RemoveCircle
@@ -19,7 +17,6 @@ class StatDisplay extends Component {
         style={{ marginBottom: "5px", marginLeft: "5px" }}
       />
     );
-    console.log("statdisplay", this.props);
     let stats = [];
     let statsDisplay = null;
     let names;
@@ -32,7 +29,6 @@ class StatDisplay extends Component {
     if (statsA !== null) {
       statsA.color = colors.blue;
       stats[0] = statsA;
-      console.log("name", statsA.NAME);
       names = (
         <h2 style={{ color: colors.blue }}>
           {statsA.NAME}
@@ -87,7 +83,6 @@ class StatDisplay extends Component {
     }
     let error = null;
     if (this.props.playerStats.error) {
-      console.log("player error");
       error = <h3 style={{ color: colors.red }}>Player Stats Not Found</h3>;
     }
     return (

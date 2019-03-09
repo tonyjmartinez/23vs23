@@ -10,15 +10,13 @@ const styles = {
     marginRight: "auto",
     color: "white",
     fontSize: "2em",
-    width: "60%"
+    width: "20%"
   }
 };
 const mapIndexed = R.addIndex(R.map);
 const renderTable = countingStats => {
   let table = mapIndexed((val, idx) => {
-    console.log("val", val);
     let stats = val;
-    console.log(stats);
     let aVal = stats.A ? (
       <td style={{ color: colors.blue }}>{stats.A.val}</td>
     ) : null;
@@ -42,12 +40,10 @@ const populateStats = (stats, player, statsArr) => {
   statsArr[0][player] = { val: stats.FGPCT };
   statsArr[1][player] = { val: stats.FG3PTPCT };
   statsArr[2][player] = { val: stats.FTPCT };
-  console.log("popStats", statsArr);
   return statsArr;
 };
 class PctTable extends Component {
   render() {
-    console.log(this.props.tableStats);
     let statsA = this.props.tableStats.A;
     let statsB = this.props.tableStats.B;
     let tableStats = {};
@@ -66,7 +62,6 @@ class PctTable extends Component {
     }
 
     const table = renderTable(statsArr);
-    console.log(table);
     const { classes } = this.props;
     return (
       <div>

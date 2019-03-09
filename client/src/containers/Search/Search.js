@@ -128,7 +128,6 @@ class Search extends Component {
   componentDidMount() {
     //this.fetchPlayers("2017-2018-regular");
     this.props.fetchPlayersList("2018-2019", "regular");
-    console.log("component did mount", this.props.playerList);
   }
 
   searchForPlayer = (playerName, playerAB) => {
@@ -167,7 +166,6 @@ class Search extends Component {
           NAME: name
         };
         this.props.showCountingStats(countingStats, playerAB);
-        console.log("searchPlayer", playerAB);
       });
   };
 
@@ -180,7 +178,6 @@ class Search extends Component {
   };
 
   searchFocus = () => {
-    console.log(this.refs);
     this.refs.SearchBox.refs.myInput.focus();
   };
 
@@ -189,7 +186,6 @@ class Search extends Component {
     if (this.props.playerList.playerList) {
       playerList = this.props.playerList.playerList;
     }
-    console.log("search playersList props", this.props.playerList);
     let searchBox = aFocused => {
       let playerAB;
       if (aFocused) {
