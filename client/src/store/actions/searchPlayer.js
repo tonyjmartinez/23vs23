@@ -55,6 +55,8 @@ export const searchPlayer = (
   dispatch(searchPlayerStart(playerAB));
   let player;
   let name = playerName;
+  console.log(playerName);
+  playerName = playerName.replace(" Jr.", "Jr");
   playerName = playerName.split("-").join("");
   playerName = playerName.replace(" ", "-");
   playerName = playerName.replace("'", "");
