@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ReactSwipe from "react-swipe";
 import Button from "@material-ui/core/Button";
 import Colors from "../../styles/colors";
@@ -9,67 +9,31 @@ const buttonDivStyle = {
   display: "inline-block"
 };
 const swipe = props => {
-  const [countStatsActive, setCountStatsActive] = useState(true);
-
   const setActive = () => {
-    reactSwipeEl.prev();
-    const pos = reactSwipeEl.getPos();
-    if (pos == 0) {
-      setCountStatsActive(true);
-    } else {
-      setCountStatsActive(false);
-    }
+    reactSwipeEl.current.next();
   };
 
-  const setInactive = () => {
-    reactSwipeEl.next();
-    const pos = reactSwipeEl.getPos();
-    if (pos == 0) {
-      setCountStatsActive(true);
-    } else {
-      setCountStatsActive(false);
-    }
+  const reactSwipeEl = useRef(null);
+
+  const swipeOptions = {
+    continuous: true
   };
-
-  let cntStatsColor;
-  let moreColor;
-
-  if (countStatsActive) {
-    cntStatsColor = Colors.red;
-    moreColor = Colors.blue;
-  } else {
-    cntStatsColor = Colors.blue;
-    moreColor = Colors.red;
-  }
-
-  let reactSwipeEl;
 
   return (
     <div>
       <ReactSwipe
         className="carousel"
-        swipeOptions={{ continuous: false }}
-        ref={el => (reactSwipeEl = el)}
+        ref={reactSwipeEl}
+        swipeOptions={swipeOptions}
       >
         {props.children}
       </ReactSwipe>
       <div style={buttonDivStyle}>
         <Button
           color="primary"
-          style={{ color: cntStatsColor }}
+          style={{ color: Colors.red }}
           variant="outlined"
           onClick={() => setActive()}
-        >
-          Counting
-        </Button>
-      </div>
-
-      <div style={buttonDivStyle}>
-        <Button
-          color="primary"
-          style={{ color: moreColor }}
-          variant="outlined"
-          onClick={() => setInactive()}
         >
           More
         </Button>

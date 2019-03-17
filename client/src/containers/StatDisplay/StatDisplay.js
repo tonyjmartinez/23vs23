@@ -80,7 +80,6 @@ class StatDisplay extends Component {
               {RemoveIcon("B")}
             </span>
           </div>
-          <SwapIcon size={30} color="white" />
         </React.Fragment>
       );
     }
@@ -88,7 +87,7 @@ class StatDisplay extends Component {
       statsDisplay = (
         <div>
           {names}
-
+          <SwapIcon size={30} color="white" />
           <Swipe>
             <div>
               <AnimatedRadar
