@@ -11,13 +11,23 @@ const buttonDivStyle = {
 const swipe = props => {
   const [countStatsActive, setCountStatsActive] = useState(true);
 
-  const setActive = counting => {
-    if (counting) {
+  const setActive = () => {
+    reactSwipeEl.prev();
+    const pos = reactSwipeEl.getPos();
+    if (pos == 0) {
       setCountStatsActive(true);
-      reactSwipeEl.prev();
     } else {
       setCountStatsActive(false);
-      reactSwipeEl.next();
+    }
+  };
+
+  const setInactive = () => {
+    reactSwipeEl.next();
+    const pos = reactSwipeEl.getPos();
+    if (pos == 0) {
+      setCountStatsActive(true);
+    } else {
+      setCountStatsActive(false);
     }
   };
 
@@ -48,7 +58,7 @@ const swipe = props => {
           color="primary"
           style={{ color: cntStatsColor }}
           variant="outlined"
-          onClick={() => setActive(true)}
+          onClick={() => setActive()}
         >
           Counting
         </Button>
@@ -59,7 +69,7 @@ const swipe = props => {
           color="primary"
           style={{ color: moreColor }}
           variant="outlined"
-          onClick={() => setActive(false)}
+          onClick={() => setInactive()}
         >
           More
         </Button>

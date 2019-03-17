@@ -3,6 +3,7 @@ const R = require("ramda");
 import _ from "lodash";
 import { withStyles } from "@material-ui/core/styles";
 import colors from "../../styles/colors";
+import Button from "@material-ui/core/Button";
 const styles = {
   table: {
     borderCollapse: "collapse",
@@ -13,6 +14,7 @@ const styles = {
     width: "20%"
   }
 };
+
 const mapIndexed = R.addIndex(R.map);
 const renderTable = (countingStats, labels) => {
   let table = mapIndexed((val, idx) => {
