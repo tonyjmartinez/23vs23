@@ -9,7 +9,13 @@ import "./PolygonStyle.css";
 class AnimatedRadar extends Component {
   state = {
     data: this.props.countingStats,
-    domain: this.props.domain
+    domain: [
+      { name: "PTS", domain: [0, 35] },
+      { name: "REB", domain: [0, 25], tickFormat: t => Math.round(t) },
+      { name: "AST", domain: [0, 15], tickFormat: t => Math.round(t) },
+      { name: "STL", domain: [0, 10], tickFormat: t => Math.round(t) },
+      { name: "BLK", domain: [0, 10], tickFormat: t => Math.round(t) }
+    ]
   };
 
   componentWillMount() {

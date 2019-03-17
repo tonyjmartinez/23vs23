@@ -14,7 +14,7 @@ const styles = {
   }
 };
 const mapIndexed = R.addIndex(R.map);
-const renderTable = countingStats => {
+const renderTable = (countingStats, labels) => {
   let table = mapIndexed((val, idx) => {
     let stats = val;
     let aVal = stats.A ? (
@@ -34,16 +34,31 @@ const renderTable = countingStats => {
   return table;
 };
 
-const labels = ["PTS", "REB", "AST", "STL", "BLK"];
+const labels = statsType => {
+  if (statsType === "counting") {
+    return ["PTS", "REB", "AST", "STL", "BLK"];
+  } else if (statsType === "more") {
+    return ["MIN", "BPM", "TO", "DREB", "OREB"];
+  }
+};
 
-const populateStats = (stats, player, statsArr) => {
-  statsArr[0][player] = { val: stats.PTS };
-  statsArr[1][player] = { val: stats.REB };
-  statsArr[2][player] = { val: stats.AST };
-  statsArr[3][player] = { val: stats.STL };
-  statsArr[4][player] = { val: stats.BLK };
+const populateStats = (stats, player, statsArr, statsType) => {
+  if (statsType === "counting") {
+    statsArr[0][player] = { val: stats.PTS };
+    statsArr[1][player] = { val: stats.REB };
+    statsArr[2][player] = { val: stats.AST };
+    statsArr[3][player] = { val: stats.STL };
+    statsArr[4][player] = { val: stats.BLK };
+  } else {
+    statsArr[0][player] = { val: stats.MIN };
+    statsArr[1][player] = { val: stats.BPM };
+    statsArr[2][player] = { val: stats.TO };
+    statsArr[3][player] = { val: stats.DREB };
+    statsArr[4][player] = { val: stats.OREB };
+  }
   return statsArr;
 };
+
 class StatsTable extends Component {
   render() {
     let statsA = this.props.tableStats.A;
@@ -52,18 +67,18 @@ class StatsTable extends Component {
     let playerAFound = this.props.tableStats.A ? true : false;
     let playerBFound = this.props.tableStats.B ? true : false;
 
-    let statsArr = [];
+    let statsVals = [];
     for (let i = 0; i <= 4; i++) {
-      statsArr[i] = {};
+      statsVals[i] = {};
     }
     if (playerAFound) {
-      statsArr = populateStats(statsA, "A", statsArr);
+      statsVals = populateStats(statsA, "A", statsVals, this.props.statsType);
     }
     if (playerBFound) {
-      statsArr = populateStats(statsB, "B", statsArr);
+      statsVals = populateStats(statsB, "B", statsVals, this.props.statsType);
     }
 
-    const table = renderTable(statsArr);
+    const table = renderTable(statsVals, labels(this.props.statsType));
     const { classes } = this.props;
     return (
       <div style={{ marginBottom: "45px" }}>
