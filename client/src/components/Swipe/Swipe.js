@@ -10,13 +10,17 @@ const buttonDivStyle = {
 };
 const swipe = props => {
   const setActive = () => {
-    reactSwipeEl.current.next();
+    if (reactSwipeEl.current.getPos() === 1) {
+      reactSwipeEl.current.prev();
+    } else {
+      reactSwipeEl.current.next();
+    }
   };
 
   const reactSwipeEl = useRef(null);
 
   const swipeOptions = {
-    continuous: true
+    continuous: false
   };
 
   return (
