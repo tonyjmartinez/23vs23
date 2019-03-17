@@ -162,7 +162,8 @@ class searchBox extends Component {
             width: "30%",
             transform: "translate(" + this.props.dropdownWidth + ", 0)",
             transition: "opacity 0.1s ease-in",
-            opacity: this.state.dropdownOpacity
+            opacity: this.state.dropdownOpacity,
+            zIndex: 2
           };
           return (
             <div style={Object.assign(style, newStyle)} children={items} />

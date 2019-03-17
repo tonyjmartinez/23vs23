@@ -9,6 +9,7 @@ import * as actions from "../../store/actions";
 import colors from "../../styles/colors";
 import RemoveCircle from "react-icons/lib/md/remove-circle-outline";
 import Swipe from "../../components/Swipe/Swipe";
+import SwapIcon from "react-icons/lib/md/swap-horiz";
 const countingStatsDomain = [
   { name: "PTS", domain: [0, 35] },
   { name: "REB", domain: [0, 25], tickFormat: t => Math.round(t) },
@@ -67,23 +68,27 @@ class StatDisplay extends Component {
 
     if (statsA !== null && statsB !== null) {
       names = (
-        <div>
-          <span style={{ color: colors.blue, fontSize: "20px" }}>
-            {statsA.NAME}
-            {RemoveIcon("A")}
-          </span>
-          <span style={{ color: colors.red, fontSize: "20px" }}> vs </span>
-          <span style={{ color: colors.orange, fontSize: "20px" }}>
-            {statsB.NAME}
-            {RemoveIcon("B")}
-          </span>
-        </div>
+        <React.Fragment>
+          <div>
+            <span style={{ color: colors.blue, fontSize: "20px" }}>
+              {statsA.NAME}
+              {RemoveIcon("A")}
+            </span>
+            <span style={{ color: colors.red, fontSize: "20px" }}> vs </span>
+            <span style={{ color: colors.orange, fontSize: "20px" }}>
+              {statsB.NAME}
+              {RemoveIcon("B")}
+            </span>
+          </div>
+          <SwapIcon size={30} color="white" />
+        </React.Fragment>
       );
     }
     if (!(statsA == null && statsB == null)) {
       statsDisplay = (
         <div>
           {names}
+
           <Swipe>
             <div>
               <AnimatedRadar
@@ -95,7 +100,7 @@ class StatDisplay extends Component {
             </div>
             <div>
               <AnimatedRadar countingStats={stats} domain={moreStatsDomain} />
-              <h3 style={{ color: colors.red }}>More Stats Per Game</h3>
+              <h3 style={{ color: colors.red }}>Stats Per Game</h3>
               <StatsTable tableStats={tableStats} statsType="more" />
             </div>
           </Swipe>

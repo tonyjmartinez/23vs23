@@ -57,7 +57,7 @@ class App extends Component {
             this.showCountingStats(stats, playerAB)
           }
         />
-        <div style={{ marginTop: "15px" }}>
+        <div style={{ position: "relative", marginTop: "15px", zIndex: 1 }}>
           <StatDisplay />
         </div>
       </div>
