@@ -83,7 +83,7 @@ class StatsTable extends Component {
     const table = renderTable(statsVals, labels(this.props.statsType));
     const { classes } = this.props;
     return (
-      <div style={{ marginBottom: "45px" }}>
+      <div style={{ marginBottom: "25px" }}>
         <table className={classes.table}>
           <tbody>{table}</tbody>
         </table>

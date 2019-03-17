@@ -4,8 +4,7 @@ import Button from "@material-ui/core/Button";
 import Colors from "../../styles/colors";
 
 const buttonDivStyle = {
-  marginRight: "15px",
-  marginLeft: "15px",
+  marginBottom: "15px",
   display: "inline-block"
 };
 const swipe = props => {
@@ -35,7 +34,7 @@ const swipe = props => {
       <div style={buttonDivStyle}>
         <Button
           color="primary"
-          style={{ color: Colors.red }}
+          style={{ color: Colors.red, border: "2px solid white" }}
           variant="outlined"
           onClick={() => setActive()}
         >
