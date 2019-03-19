@@ -1,6 +1,0 @@
-Install mongodb
-Might be an error for needing libcurl.. install that
-add the /data/db and chown -R
-
-Install robo3t
-Install postman
