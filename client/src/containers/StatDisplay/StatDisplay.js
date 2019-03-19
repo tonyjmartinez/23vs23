@@ -10,6 +10,8 @@ import colors from "../../styles/colors";
 import RemoveCircle from "react-icons/lib/md/remove-circle-outline";
 import Swipe from "../../components/Swipe/Swipe";
 import SwapIcon from "react-icons/lib/md/swap-horiz";
+import PlayersBar from "../../components/PlayersBar/PlayersBar";
+
 const countingStatsDomain = [
   { name: "PTS", domain: [0, 35] },
   { name: "REB", domain: [0, 25], tickFormat: t => Math.round(t) },
@@ -35,6 +37,11 @@ class StatDisplay extends Component {
         style={{ marginBottom: "5px", marginLeft: "5px" }}
       />
     );
+
+    const removePlayer = player => {
+      this.props.clearPlayer(player);
+    };
+
     let stats = [];
     let statsDisplay = null;
     let names;
@@ -46,41 +53,34 @@ class StatDisplay extends Component {
       B: statsB
     };
     if (statsA !== null) {
+      console.log("playeraname", statsA);
       statsA.color = colors.blue;
       stats[0] = statsA;
       names = (
-        <h2 style={{ color: colors.blue }}>
-          {statsA.NAME}
-          {RemoveIcon("A")}
-        </h2>
+        <PlayersBar
+          clearPlayer={player => removePlayer(player)}
+          playerAName={statsA.NAME}
+        />
       );
     }
     if (statsB !== null) {
       statsB.color = colors.orange;
       stats[1] = statsB;
       names = (
-        <h2 style={{ color: colors.orange }}>
-          {statsB.NAME}
-          {RemoveIcon("B")}
-        </h2>
+        <PlayersBar
+          clearPlayer={player => removePlayer(player)}
+          playerBName={statsB.NAME}
+        />
       );
     }
 
     if (statsA !== null && statsB !== null) {
       names = (
-        <React.Fragment>
-          <div>
-            <span style={{ color: colors.blue, fontSize: "20px" }}>
-              {statsA.NAME}
-              {RemoveIcon("A")}
-            </span>
-            <span style={{ color: colors.red, fontSize: "20px" }}> vs </span>
-            <span style={{ color: colors.orange, fontSize: "20px" }}>
-              {statsB.NAME}
-              {RemoveIcon("B")}
-            </span>
-          </div>
-        </React.Fragment>
+        <PlayersBar
+          clearPlayer={player => removePlayer(player)}
+          playerAName={statsA.NAME}
+          playerBName={statsB.NAME}
+        />
       );
     }
     if (!(statsA == null && statsB == null)) {

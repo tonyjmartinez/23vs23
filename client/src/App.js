@@ -48,7 +48,7 @@ class App extends Component {
     }
 
     return (
-      <div style={{ marginBottom: "100px" }}>
+      <div style={{ marginBottom: "100px", marginTop: "50px" }}>
         <Nav>
           <Toolbar />
         </Nav>
