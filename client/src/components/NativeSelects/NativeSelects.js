@@ -41,6 +41,7 @@ class SimpleSelect extends React.Component {
     season: "2018-2019",
     seasonType: "regular"
   };
+
   componentDidMount() {}
   season = event => {
     this.setState({ season: event.target.value });
@@ -52,7 +53,7 @@ class SimpleSelect extends React.Component {
     if (event.target.value === "regular") {
       this.setState({ season: "2018-2019" });
     } else {
-      this.setState({ season: "2018" });
+      this.setState({ season: "2019" });
     }
     this.setState({ seasonType: event.target.value });
     this.props.fetchPlayersList(this.state.season, event.target.value);
@@ -73,6 +74,7 @@ class SimpleSelect extends React.Component {
   };
 
   render() {
+    console.log("native selects", this.state.season, this.state.seasonType);
     let options;
     if (this.state.seasonType === "regular") {
       options = [
@@ -91,13 +93,16 @@ class SimpleSelect extends React.Component {
       ];
     } else if (this.state.seasonType === "playoff") {
       options = [
-        <MenuItem key={5} style={optionStyle} value="2018">
+        <MenuItem key={5} style={optionStyle} value="2019">
+          2019
+        </MenuItem>,
+        <MenuItem key={6} style={optionStyle} value="2018">
           2018
         </MenuItem>,
-        <MenuItem key={6} style={optionStyle} value="2017">
+        <MenuItem key={7} style={optionStyle} value="2017">
           2017
         </MenuItem>,
-        <MenuItem key={7} style={optionStyle} value="2016">
+        <MenuItem key={8} style={optionStyle} value="2016">
           2016
         </MenuItem>
       ];
