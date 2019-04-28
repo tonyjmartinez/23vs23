@@ -55,16 +55,16 @@ const playerChips = props => {
   let aName;
   let bName;
   if (props.playerAName !== undefined) {
-    if (props.playerAName.length > 14) {
-      aName = props.playerAName.slice(0, 14) + "...";
+    if (props.playerAName.length > 12) {
+      aName = props.playerAName.slice(0, 12) + "...";
     } else {
       aName = props.playerAName;
     }
   }
 
   if (props.playerBName !== undefined) {
-    if (props.playerBName.length > 14) {
-      bName = props.playerBName.slice(0, 14) + "...";
+    if (props.playerBName.length > 12) {
+      bName = props.playerBName.slice(0, 12) + "...";
     } else {
       bName = props.playerBName;
     }

@@ -51,12 +51,13 @@ class SimpleSelect extends React.Component {
   seasonType = event => {
     let type = event.target.value;
     if (event.target.value === "regular") {
-      this.setState({ season: "2018-2019" });
+      this.setState({ season: "2018-2019", seasonType: type });
+      this.props.fetchPlayersList("2018-2019", type);
     } else {
-      this.setState({ season: "2019" });
+      console.log("else");
+      this.setState({ season: "2019", seasonType: type });
+      this.props.fetchPlayersList("2019", type);
     }
-    this.setState({ seasonType: event.target.value });
-    this.props.fetchPlayersList(this.state.season, event.target.value);
   };
 
   colorStyle = () => {

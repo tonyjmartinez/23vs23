@@ -9,7 +9,7 @@ import PlayerChips from "../PlayerChips/PlayerChips";
 const useStyles = makeStyles({
   appbar: {
     backgroundColor: "#bdbdbd",
-    opacity: 0.7
+    opacity: 0.5
   },
   toolbar: {
     minHeight: 20
