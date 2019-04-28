@@ -54,7 +54,6 @@ class SimpleSelect extends React.Component {
       this.setState({ season: "2018-2019", seasonType: type });
       this.props.fetchPlayersList("2018-2019", type);
     } else {
-      console.log("else");
       this.setState({ season: "2019", seasonType: type });
       this.props.fetchPlayersList("2019", type);
     }
@@ -75,7 +74,6 @@ class SimpleSelect extends React.Component {
   };
 
   render() {
-    console.log("native selects", this.state.season, this.state.seasonType);
     let options;
     if (this.state.seasonType === "regular") {
       options = [

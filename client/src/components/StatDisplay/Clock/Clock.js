@@ -27,12 +27,10 @@ export default class Clock extends React.Component {
   };
 
   render() {
-    console.log("[Clock.js]", this.props.stats);
     let pctArr = [];
     let fgPctA;
     let fgPctB;
     if (this.props.stats[0] && !this.props.stats[1]) {
-      console.log("[clock.js]", this.props.stats);
       let fgPctA = this.props.stats[0];
       pctArr[0] = {
         time: pctToClock(fgPctA[this.state.split]),
@@ -78,7 +76,6 @@ export default class Clock extends React.Component {
       vs = "  VS  ";
     }
 
-    console.log("[Clock.js]", this.props.stats);
     return (
       <div style={{ margin: "0px auto", width: "300px" }}>
         <XYPlot

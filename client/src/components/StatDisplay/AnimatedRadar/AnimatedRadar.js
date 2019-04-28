@@ -12,10 +12,7 @@ class AnimatedRadar extends Component {
     domain: this.props.domain
   };
 
-  componentWillMount() {
-    console.log("props", this.props.countingStats);
-    console.log("state", this.state.data);
-  }
+  componentWillMount() {}
   tickFormatter = (value, index, scale, tickTotal) => {
     return `${scale.tickFormat(tickTotal, "s")}Wh`; // -> e.g. 1.2kWh
   };

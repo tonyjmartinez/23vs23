@@ -47,13 +47,11 @@ class StatDisplay extends Component {
     let names;
     let statsA = this.props.playerStats.A.stats;
     let statsB = this.props.playerStats.B.stats;
-    console.log(this.props.playerStats);
     let tableStats = {
       A: statsA,
       B: statsB
     };
     if (statsA !== null) {
-      console.log("playeraname", statsA);
       statsA.color = colors.blue;
       stats[0] = statsA;
       names = (

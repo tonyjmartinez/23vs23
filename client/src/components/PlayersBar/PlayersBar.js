@@ -17,7 +17,6 @@ const useStyles = makeStyles({
 });
 const playersBar = props => {
   const classes = useStyles();
-  console.log("playersBar", props);
   //todo: add clearPlayer
   return (
     <div>
