@@ -1,4 +1,16 @@
-#23vs23.com
->NBA Player Stats Comparator
-PWA for comparing and visualizing NBA player stats. Currently shows counting stats and shooting splits per game. 
-Stats pulled from https://mysportsfeeds.com. Built with React, Material-UI, React-Vis.
+# 23vs23.com
+### NBA Player Stats Comparator
+React web app for comparing and visualizing NBA player stats.
+  
+Uses React-Vis to provide data visualization for stats pulled from the MySportsFeeds API.
+
+The front end uses React, Redux, Material-UI, React-AutoComplete, and React-Swipe.
+
+The back end uses Express to handle fetches to the MySportsFeeds API.
+
+## Running the client
+cd client
+  
+npm install
+  
+npm start
