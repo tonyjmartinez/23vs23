@@ -127,7 +127,7 @@ class Search extends Component {
 
   componentDidMount() {
     //this.fetchPlayers("2017-2018-regular");
-    this.props.fetchPlayersList("2018-2019", "regular");
+    this.props.fetchPlayersList("2019-2020", "regular");
   }
 
   searchForPlayer = (playerName, playerAB) => {
@@ -247,4 +247,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, actions)(Search);
+export default connect(
+  mapStateToProps,
+  actions
+)(Search);

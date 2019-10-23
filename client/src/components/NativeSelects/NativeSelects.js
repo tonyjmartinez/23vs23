@@ -38,7 +38,7 @@ const optionStyle = {
 
 class SimpleSelect extends React.Component {
   state = {
-    season: "2018-2019",
+    season: "2019-2020",
     seasonType: "regular"
   };
 
@@ -51,8 +51,8 @@ class SimpleSelect extends React.Component {
   seasonType = event => {
     let type = event.target.value;
     if (event.target.value === "regular") {
-      this.setState({ season: "2018-2019", seasonType: type });
-      this.props.fetchPlayersList("2018-2019", type);
+      this.setState({ season: "2019-2020", seasonType: type });
+      this.props.fetchPlayersList("2019-2020", type);
     } else {
       this.setState({ season: "2019", seasonType: type });
       this.props.fetchPlayersList("2019", type);
@@ -77,31 +77,34 @@ class SimpleSelect extends React.Component {
     let options;
     if (this.state.seasonType === "regular") {
       options = [
-        <MenuItem key={1} style={optionStyle} value="2018-2019">
+        <MenuItem key={1} style={optionStyle} value="2019-2020">
+          2019-20
+        </MenuItem>,
+        <MenuItem key={2} style={optionStyle} value="2018-2019">
           2018-19
         </MenuItem>,
-        <MenuItem key={2} style={optionStyle} value="2017-2018">
+        <MenuItem key={3} style={optionStyle} value="2017-2018">
           2017-18
         </MenuItem>,
-        <MenuItem key={3} style={optionStyle} value="2016-2017">
+        <MenuItem key={4} style={optionStyle} value="2016-2017">
           2016-17
         </MenuItem>,
-        <MenuItem key={4} style={optionStyle} value="2015-2016">
+        <MenuItem key={5} style={optionStyle} value="2015-2016">
           2015-16
         </MenuItem>
       ];
     } else if (this.state.seasonType === "playoff") {
       options = [
-        <MenuItem key={5} style={optionStyle} value="2019">
+        <MenuItem key={6} style={optionStyle} value="2019">
           2019
         </MenuItem>,
-        <MenuItem key={6} style={optionStyle} value="2018">
+        <MenuItem key={7} style={optionStyle} value="2018">
           2018
         </MenuItem>,
-        <MenuItem key={7} style={optionStyle} value="2017">
+        <MenuItem key={8} style={optionStyle} value="2017">
           2017
         </MenuItem>,
-        <MenuItem key={8} style={optionStyle} value="2016">
+        <MenuItem key={9} style={optionStyle} value="2016">
           2016
         </MenuItem>
       ];
@@ -136,4 +139,7 @@ class SimpleSelect extends React.Component {
   }
 }
 
-export default connect(null, actions)(SimpleSelect);
+export default connect(
+  null,
+  actions
+)(SimpleSelect);
