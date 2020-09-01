@@ -4,12 +4,13 @@ const axios = require("axios");
 const MySportsFeeds = require("mysportsfeeds-node");
 const msf = new MySportsFeeds("1.2", true);
 msf.authenticate(config.key, config.pword);
-module.exports = function(app) {
-  app.get("/app2", function(req, res) {
+
+module.exports = function (app) {
+  app.get("/app2", function (req, res) {
     res.send({ hello: "there" });
   });
 
-  app.get("/app2/players", async function(req, res) {
+  app.get("/app2/players", async function (req, res) {
     console.log("season:" + req.query.season);
     const url =
       "https://api.mysportsfeeds.com/v1.2/pull/nba/" +
@@ -23,19 +24,20 @@ module.exports = function(app) {
       dataType: "json",
       async: false,
       headers: {
-        Authorization: "Basic " + btoa(config.key + ":" + config.pword)
-      }
+        Authorization: "Basic " + btoa(config.key + ":" + config.pword),
+      },
     })
-      .then(function(res) {
+      .then(function (res) {
+        console.log("res??", res);
         return res.data.rosterplayers;
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.log("error", err);
       });
     res.send({ data: data });
   });
 
-  app.get("/app2/playerSearch", async function(req, res) {
+  app.get("/app2/playerSearch", async function (req, res) {
     let player = req.query.player;
     let season = req.query.season;
     console.log(player, season);
@@ -52,18 +54,16 @@ module.exports = function(app) {
       dataType: "json",
       async: false,
       headers: {
-        Authorization: "Basic " + btoa(config.key + ":" + config.pword)
-      }
+        Authorization: "Basic " + btoa(config.key + ":" + config.pword),
+      },
     })
-      .then(function(res) {
+      .then(function (res) {
         console.log(res.data.cumulativeplayerstats.playerstatsentry);
         return res.data.cumulativeplayerstats.playerstatsentry;
       })
-      .catch(function(err) {
+      .catch(function (err) {
         //console.log(err);
       });
     res.send({ data: data });
   });
-
-  app.post("/app2/signup", Authentication.signup);
 };
